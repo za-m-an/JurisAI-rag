@@ -44,6 +44,7 @@ class LLMClient:
 
     def __init__(self, settings: Optional[Settings] = None):
         self._settings = settings
+        self.json_repair_retries: int = 0
 
     @property
     def settings(self) -> Settings:
@@ -109,6 +110,7 @@ class LLMClient:
             pass
 
         # One automatic repair retry if JSON is invalid
+        self.json_repair_retries += 1
         repair_user = (
             "The previous output was not valid JSON. Repair and return ONLY a valid JSON object matching the schema:\n\n"
             f"{raw}"
