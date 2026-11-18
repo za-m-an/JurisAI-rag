@@ -1,0 +1,42 @@
+﻿law_id,provision_ref,citation_string,topic,summary_own_words,risk_tag,confidence,verified
+BD-COMP-2012,s.15(1),"Competition Act 2012 (BD), s.15(1)",anti-competitive agreements,"General prohibition on agreements or collusion about production, supply, distribution, storage or acquisition of goods/services that harm competition.",cartel,high,False
+BD-COMP-2012,s.15(2),"Competition Act 2012 (BD), s.15(2)",horizontal presumptions,"Lists practices presumed to harm competition (e.g., price fixing, output limits, market sharing, bid rigging).",cartel,high,False
+BD-COMP-2012,s.15(3),"Competition Act 2012 (BD), s.15(3)",vertical restraints,"Addresses tie-in, exclusive supply, exclusive distribution, refusal to deal and resale price maintenance arrangements.",exclusivity|tying|rpm,high,False
+BD-COMP-2012,s.15(4),"Competition Act 2012 (BD), s.15(4)",exclusions,Carves out certain acts from the prohibition (read text for exact scope).,exclusions,medium,False
+BD-COMP-2012,s.16(1)-(2),"Competition Act 2012 (BD), s.16",abuse of dominant position,"Prohibits abuse of dominance; s.16(2) lists presumed abuses (e.g., unfair/discriminatory pricing, predatory pricing below cost, limiting production or access).",abuse_dominance,high,False
+BD-COMP-2012,s.17-18,"Competition Act 2012 (BD), ss.17-18",pre-inquiry and inquiry,Commission's pre-inquiry and inquiry procedure on complaints or its own initiative.,procedure,medium,False
+BD-COMP-2012,s.19,"Competition Act 2012 (BD), s.19",interim measures,Interim orders to stop conduct that appears to breach ss.15-16 during the process.,procedure,medium,False
+BD-COMP-2012,s.20,"Competition Act 2012 (BD), s.20",penalties,Financial penalties; secondary sources cite up to 10% of average turnover (3 years) or up to three times profit for cartel conduct. Confirm against text.,penalties,medium,False
+BD-COMP-2012,s.21,"Competition Act 2012 (BD), s.21",combinations / extraterritorial,Sources conflict on whether s.21 covers combinations or agreements made outside Bangladesh. MUST check the text before citing.,merger|extraterritorial,low,False
+BD-COMP-2012,s.5,"Competition Act 2012 (BD), s.5",Commission,Establishes the Bangladesh Competition Commission.,institutional,medium,False
+BD-CONTRACT-1872,s.10,"Contract Act 1872 (BD), s.10",valid contracts,"Elements of a valid contract: free consent, competent parties, lawful consideration and object.",formation,medium,False
+BD-CONTRACT-1872,s.14,"Contract Act 1872 (BD), s.14",free consent,"Defines free consent; consent induced by coercion, undue influence, fraud, misrepresentation or mistake is not free.",free_consent,medium,False
+BD-CONTRACT-1872,s.16,"Contract Act 1872 (BD), s.16",undue influence,Contracts obtained through dominant position over the other party's will.,free_consent,medium,False
+BD-CONTRACT-1872,s.23,"Contract Act 1872 (BD), s.23",lawful object,"Consideration or object is unlawful if forbidden by law, defeats law, is fraudulent or opposed to public policy.",unlawful_object,medium,False
+BD-CONTRACT-1872,s.27,"Contract Act 1872 (BD), s.27",restraint of trade,"Agreements restraining a lawful profession, trade or business are void (limited exception for sale of goodwill). Key hook for non-competes and exclusivity.",restraint_of_trade,high,False
+BD-CONTRACT-1872,s.28,"Contract Act 1872 (BD), s.28",restraint of legal proceedings,Agreements restricting enforcement of rights through ordinary legal proceedings are void to that extent (arbitration carve-out).,dispute_resolution,medium,False
+BD-CONTRACT-1872,s.73,"Contract Act 1872 (BD), s.73",damages for breach,Compensation for loss naturally arising from breach; no remote or indirect loss.,damages,medium,False
+BD-CONTRACT-1872,s.74,"Contract Act 1872 (BD), s.74",liquidated damages and penalties,"Where a sum is named for breach, courts award reasonable compensation not exceeding the named amount.",penalty_clause,high,False
+BD-CONTRACT-1872,s.124,"Contract Act 1872 (BD), s.124",indemnity,Defines contract of indemnity (relevant to liability allocation clauses).,liability_limitation,medium,False
+BD-SOGA-1930,ss.14-17,"Sale of Goods Act 1930 (BD), ss.14-17",implied terms,"Implied conditions/warranties on title, description, quality/fitness and sample.",implied_terms,medium,False
+BD-SOGA-1930,s.62,"Sale of Goods Act 1930 (BD), s.62",exclusion of implied terms,Express terms can negate or vary implied terms (check exact wording).,exclusion_of_terms,low,False
+US-SHERMAN-1890,s.1 / 15 USC 1,15 U.S.C. § 1,restraint of trade,"Prohibits contracts, combinations and conspiracies in restraint of trade; criminal and civil enforcement.",cartel|rpm|exclusivity,high,False
+US-SHERMAN-1890,s.2 / 15 USC 2,15 U.S.C. § 2,monopolization,"Prohibits monopolization, attempts and conspiracies to monopolize.",abuse_dominance,high,False
+US-CLAYTON-1914,s.3 / 15 USC 14,15 U.S.C. § 14,tying and exclusive dealing (goods),Unlawful to sell/lease goods on condition of not dealing with competitors where effect may substantially lessen competition or tend to create monopoly.,tying|exclusivity,high,False
+US-CLAYTON-1914,s.4 / 15 USC 15,15 U.S.C. § 15,private damages,Private right of action with threefold damages and attorney's fees.,penalties,high,False
+US-CLAYTON-1914,s.7 / 15 USC 18,15 U.S.C. § 18,mergers,Prohibits acquisitions that may substantially lessen competition.,merger,high,False
+US-RPA-1936,15 USC 13,15 U.S.C. § 13,price discrimination,Restricts price discrimination between competing purchasers of like goods with competitive injury.,price_discrimination,high,False
+US-FTCA-1914,s.5 / 15 USC 45,15 U.S.C. § 45,unfair methods of competition,Declares unfair methods of competition and unfair or deceptive acts unlawful.,unfair_practice,high,False
+US-UCC-ART2,UCC 2-302,UCC § 2-302,unconscionability,Court may refuse to enforce unconscionable contracts or clauses.,unfair_terms,high,False
+US-UCC-ART2,UCC 2-719,UCC § 2-719,limitation of remedy,Contractual limits on remedies and consequential damages allowed unless unconscionable or remedy fails of essential purpose.,liability_limitation,high,False
+US-UCC-ART2,UCC 2-316,UCC § 2-316,warranty disclaimers,Rules for excluding or modifying implied warranties (conspicuousness etc.).,liability_limitation,high,False
+US-UCC-ART2,UCC 2-718,UCC § 2-718,liquidated damages,Liquidated damages valid only if reasonable in light of anticipated or actual harm.,penalty_clause,high,False
+US-UCC-ART2,UCC 2-306,UCC § 2-306,"output, requirements, exclusive dealing",Good-faith duties in requirements/output contracts; exclusive dealing implies best efforts.,exclusivity,high,False
+EU-TFEU-101,Art.101(1),TFEU Art. 101(1),prohibited agreements,"Prohibits agreements, decisions and concerted practices that restrict competition and affect trade between Member States.",cartel|exclusivity|rpm,high,False
+EU-TFEU-101,Art.101(2),TFEU Art. 101(2),nullity,Prohibited agreements are automatically void.,contract_validity,high,False
+EU-TFEU-101,Art.101(3),TFEU Art. 101(3),exemption,"Conditions for exemption (efficiencies, consumer benefit, indispensability, no elimination of competition).",exemption,high,False
+EU-TFEU-102,Art.102,TFEU Art. 102,abuse of dominance,"Prohibits abuse of a dominant position (unfair prices, limiting production, discrimination, tying).",abuse_dominance|tying,high,False
+EU-VBER-2022,Art.4,"VBER 2022/720, Art. 4",hardcore restrictions,Resale price maintenance and certain territorial/customer restrictions remove block-exemption benefit.,rpm,high,False
+EU-VBER-2022,Art.5,"VBER 2022/720, Art. 5",excluded restrictions,Non-compete obligations exceeding five years or post-term non-competes are not exempted (limited exceptions).,exclusivity|non_compete,high,False
+EU-REG-1-2003,Art.23,"Regulation 1/2003, Art. 23",fines,Fines up to 10% of total turnover for infringements of Arts. 101-102.,penalties,high,False
+EU-REG-139-2004,Art.2,"EUMR 139/2004, Art. 2",merger test,Concentrations that significantly impede effective competition are incompatible with the internal market.,merger,medium,False

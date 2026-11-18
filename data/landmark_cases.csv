@@ -1,0 +1,42 @@
+﻿id,jurisdiction,court,case_name,citation,year,topic,risk_tag,lookup_source,confidence,verified
+US-CASE-01,US,SCOTUS/Fed.,Standard Oil Co. v. United States,221 U.S. 1,1911,rule of reason,cartel|monopolization,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-02,US,SCOTUS/Fed.,"Continental T.V., Inc. v. GTE Sylvania Inc.",433 U.S. 36,1977,"vertical non-price restraints, rule of reason",exclusivity,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-03,US,SCOTUS/Fed.,Leegin Creative Leather Products v. PSKS,551 U.S. 877,2007,RPM judged under rule of reason,rpm,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-04,US,SCOTUS/Fed.,State Oil Co. v. Khan,522 U.S. 3,1997,"maximum RPM, rule of reason",rpm,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-05,US,SCOTUS/Fed.,Business Electronics Corp. v. Sharp Electronics,485 U.S. 717,1988,vertical restraints agreement requirement,rpm,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-06,US,SCOTUS/Fed.,Monsanto Co. v. Spray-Rite Service Corp.,465 U.S. 752,1984,concerted action in vertical settings,rpm,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-07,US,SCOTUS/Fed.,United States v. Grinnell Corp.,384 U.S. 563,1966,monopolization elements,abuse_dominance,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-08,US,SCOTUS/Fed.,Aspen Skiing Co. v. Aspen Highlands Skiing Corp.,472 U.S. 585,1985,refusal to deal,abuse_dominance,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-09,US,SCOTUS/Fed.,Verizon Communications v. Law Offices of Curtis V. Trinko,540 U.S. 398,2004,limits of duty to deal,abuse_dominance,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-10,US,SCOTUS/Fed.,"Spectrum Sports, Inc. v. McQuillan",506 U.S. 447,1993,attempted monopolization,abuse_dominance,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-11,US,SCOTUS/Fed.,Brooke Group Ltd. v. Brown & Williamson Tobacco Corp.,509 U.S. 209,1993,predatory pricing standard,abuse_dominance,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-12,US,SCOTUS/Fed.,Bell Atlantic Corp. v. Twombly,550 U.S. 544,2007,pleading conspiracy,cartel,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-13,US,SCOTUS/Fed.,Jefferson Parish Hospital Dist. No. 2 v. Hyde,466 U.S. 2,1984,tying analysis,tying,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-14,US,SCOTUS/Fed.,"Illinois Tool Works Inc. v. Independent Ink, Inc.",547 U.S. 28,2006,market power in tying cases,tying,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-15,US,SCOTUS/Fed.,Eastman Kodak Co. v. Image Technical Services,504 U.S. 451,1992,aftermarket tying and market power,tying,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-16,US,SCOTUS/Fed.,Tampa Electric Co. v. Nashville Coal Co.,365 U.S. 320,1961,exclusive dealing foreclosure,exclusivity,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-17,US,SCOTUS/Fed.,Brown Shoe Co. v. United States,370 U.S. 294,1962,merger analysis,merger,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-18,US,SCOTUS/Fed.,Ohio v. American Express Co.,585 U.S. 529,2018,two-sided platforms,platform,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-19,US,SCOTUS/Fed.,NCAA v. Alston,594 U.S. 69,2021,"rule of reason, restraints in labor market",restraint_of_trade,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-20,US,SCOTUS/Fed.,Apple Inc. v. Pepper,587 U.S. 273,2019,indirect purchaser standing,private_damages,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-21,US,SCOTUS/Fed.,United States v. Microsoft Corp.,253 F.3d 34 (D.C. Cir.),2001,"monopoly maintenance, tying",abuse_dominance|tying,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-22,US,SCOTUS/Fed.,FTC v. Qualcomm Inc.,969 F.3d 974 (9th Cir.),2020,"licensing practices, monopolization theory limits",ip_licensing|abuse_dominance,CourtListener citation-lookup API / CAP,medium,False
+US-CASE-23,US,SCOTUS/Fed.,Texaco Inc. v. Dagher,547 U.S. 1,2006,"joint venture pricing, per se rule limits",cartel,CourtListener citation-lookup API / CAP,medium,False
+EU-CASE-01,EU,CJEU,Établissements Consten S.à.R.L. and Grundig-Verkaufs-GmbH v Commission,Joined Cases 56/64 and 58/64,1966,absolute territorial protection,exclusivity,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-02,EU,CJEU,United Brands Co. v Commission,Case 27/76,1978,"dominance, unfair pricing",abuse_dominance,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-03,EU,CJEU,Hoffmann-La Roche v Commission,Case 85/76,1979,"loyalty rebates, dominance",abuse_dominance|exclusivity,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-04,EU,CJEU,Metro SB-Großmärkte v Commission,Case 26/76,1977,selective distribution,exclusivity,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-05,EU,CJEU,Delimitis v Henninger Bräu,Case C-234/89,1991,"beer supply agreements, foreclosure",exclusivity,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-06,EU,CJEU,Oscar Bronner v Mediaprint,Case C-7/97,1998,"refusal to supply, essential facilities",abuse_dominance,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-07,EU,CJEU,Wouters and Others,Case C-309/99,2002,"ancillary restraints, regulatory objectives",restraint_of_trade,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-08,EU,CJEU,Courage Ltd v Crehan,Case C-453/99,2001,private damages for Art. 101 breach,private_damages,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-09,EU,CJEU,AKZO Chemie v Commission,Case C-62/86,1991,predatory pricing,abuse_dominance,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-10,EU,CJEU,Tetra Pak International v Commission (Tetra Pak II),Case C-333/94 P,1996,"tying, dominance",tying,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-11,EU,CJEU,Post Danmark A/S (Post Danmark I),Case C-209/10,2012,"as-efficient-competitor, price abuse",abuse_dominance,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-12,EU,CJEU,Pierre Fabre Dermo-Cosmétique,Case C-439/09,2011,"online sales ban, selective distribution",rpm|online_sales,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-13,EU,CJEU,Groupement des cartes bancaires v Commission,Case C-67/13 P,2014,restriction by object,cartel,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-14,EU,CJEU,Intel Corp. v Commission,Case C-413/14 P,2017,"loyalty rebates, effects analysis",abuse_dominance,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-15,EU,CJEU,Servier and Others v Commission,Case C-176/19 P,2022,"pay-for-delay, restriction by object",cartel,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-16,EU,CJEU,Slovak Telekom v Commission,Case C-165/19 P,2021,refusal to supply,abuse_dominance,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-17,EU,CJEU,Google Shopping (Google v Commission),Case C-48/22 P,2024,self-preferencing as abuse,abuse_dominance,EUR-Lex (search by case number to get CELEX),medium,False
+EU-CASE-18,EU,CJEU,European Superleague Company,Case C-333/21,2023,sports governance rules under Arts. 101-102,restraint_of_trade,EUR-Lex (search by case number to get CELEX),medium,False
