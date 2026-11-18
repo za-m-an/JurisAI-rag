@@ -4,6 +4,7 @@ import json
 import logging
 import time
 import uuid
+from contextlib import asynccontextmanager
 from typing import Optional
 from urllib.parse import unquote
 
@@ -139,6 +140,15 @@ class ASGIGuardAndLoggingMiddleware:
         )
 
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    settings = load_settings()
+    if not is_index_ready(settings.chroma_dir):
+        logger.info(json.dumps({"event": "startup_auto_ingest", "chroma_dir": str(settings.chroma_dir)}))
+        run_ingest(data_dir=settings.data_dir, chroma_dir=settings.chroma_dir, settings=settings)
+    yield
+
+
 def create_app() -> FastAPI:
     cfg = load_settings()
     app = FastAPI(
@@ -146,6 +156,7 @@ def create_app() -> FastAPI:
         version=__version__,
         docs_url="/docs",
         redoc_url="/redoc",
+        lifespan=lifespan,
     )
 
     app.add_middleware(ASGIGuardAndLoggingMiddleware)
@@ -158,13 +169,6 @@ def create_app() -> FastAPI:
             allow_methods=["*"],
             allow_headers=["*"],
         )
-
-    @app.on_event("startup")
-    def _startup_check_and_ingest() -> None:
-        settings = load_settings()
-        if not is_index_ready(settings.chroma_dir):
-            logger.info(json.dumps({"event": "startup_auto_ingest", "chroma_dir": str(settings.chroma_dir)}))
-            run_ingest(data_dir=settings.data_dir, chroma_dir=settings.chroma_dir, settings=settings)
 
     @app.exception_handler(ServiceAPIError)
     async def _handle_service_error(request: Request, exc: ServiceAPIError):
