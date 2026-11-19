@@ -238,10 +238,13 @@ def create_app() -> FastAPI:
         if h.get("x-llm-provider"):
             overrides["llm_provider"] = h.get("x-llm-provider", "").strip().lower()
         if h.get("x-llm-api-key"):
-            overrides["anthropic_api_key"] = h.get("x-llm-api-key", "").strip()
-            overrides["openai_api_key"] = h.get("x-llm-api-key", "").strip()
-            overrides["deepseek_api_key"] = h.get("x-llm-api-key", "").strip()
-            overrides["custom_llm_api_key"] = h.get("x-llm-api-key", "").strip()
+            key = h.get("x-llm-api-key", "").strip()
+            overrides["anthropic_api_key"] = key
+            overrides["openai_api_key"] = key
+            overrides["deepseek_api_key"] = key
+            overrides["openrouter_api_key"] = key
+            overrides["aws_api_key"] = key
+            overrides["custom_llm_api_key"] = key
         if h.get("x-llm-model-main"):
             overrides["model_main"] = h.get("x-llm-model-main", "").strip()
         if h.get("x-llm-base-url"):
@@ -250,7 +253,10 @@ def create_app() -> FastAPI:
         if h.get("x-rag-llm-provider"):
             overrides["rag_llm_provider"] = h.get("x-rag-llm-provider", "").strip().lower()
         if h.get("x-rag-llm-api-key"):
-            overrides["rag_llm_api_key"] = h.get("x-rag-llm-api-key", "").strip()
+            rag_key = h.get("x-rag-llm-api-key", "").strip()
+            overrides["rag_llm_api_key"] = rag_key
+            if "openrouter_api_key" not in overrides:
+                overrides["openrouter_api_key"] = rag_key
         if h.get("x-rag-llm-model"):
             overrides["model_small"] = h.get("x-rag-llm-model", "").strip()
         if h.get("x-rag-llm-base-url"):
@@ -262,6 +268,8 @@ def create_app() -> FastAPI:
                 req_settings.anthropic_api_key
                 or req_settings.openai_api_key
                 or req_settings.deepseek_api_key
+                or req_settings.openrouter_api_key
+                or req_settings.aws_api_key
                 or req_settings.custom_llm_api_key
                 or req_settings.rag_llm_api_key
             )
@@ -301,14 +309,15 @@ def create_app() -> FastAPI:
         return {"status": "ok", "mock_llm": updated.mock_llm}
 
     @app.get("/health", response_model=HealthResponse)
-    def get_health():
+    def get_health(request: Request):
         settings = load_settings()
         ensure_index_available()
         stats = get_corpus_health_stats(chroma_dir=settings.chroma_dir)
+        client = resolve_request_llm_client(request)
         resp = HealthResponse(
             status="ok",
             version=__version__,
-            mock=settings.mock_llm,
+            mock=client.is_mock,
             embeddings=settings.embeddings_backend,  # type: ignore[arg-type]
             corpus=CorpusStats(**stats),
         )

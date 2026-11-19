@@ -4,6 +4,9 @@ import os
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 RAG_ROOT = Path(__file__).resolve().parent.parent
@@ -118,6 +121,10 @@ def load_settings() -> Settings:
     anthropic_api_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
     openai_api_key = os.getenv("OPENAI_API_KEY", "").strip()
     deepseek_api_key = os.getenv("DEEPSEEK_API_KEY", "").strip()
+    openrouter_api_key = os.getenv("OPENROUTER_API_KEY", "").strip()
+    openrouter_base_url = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1").strip() or "https://openrouter.ai/api/v1"
+    aws_api_key = os.getenv("AWS_API_KEY", "").strip()
+    aws_base_url = os.getenv("AWS_BASE_URL", "https://bedrock-runtime.us-east-1.amazonaws.com").strip() or "https://bedrock-runtime.us-east-1.amazonaws.com"
     custom_llm_api_key = os.getenv("CUSTOM_LLM_API_KEY", "").strip()
     custom_llm_base_url = os.getenv("CUSTOM_LLM_BASE_URL", "").strip()
     model_main = os.getenv("MODEL_MAIN", "claude-sonnet-5-5").strip() or "claude-sonnet-5-5"
@@ -134,7 +141,13 @@ def load_settings() -> Settings:
         embeddings_backend = "openai" if openai_api_key else "hash"
 
     has_any_key = bool(
-        anthropic_api_key or openai_api_key or deepseek_api_key or custom_llm_api_key or rag_llm_api_key
+        anthropic_api_key
+        or openai_api_key
+        or deepseek_api_key
+        or openrouter_api_key
+        or aws_api_key
+        or custom_llm_api_key
+        or rag_llm_api_key
     )
     raw_mock = os.getenv("MOCK_LLM", "").strip().lower()
     if raw_mock in ("1", "true", "yes"):
@@ -162,6 +175,10 @@ def load_settings() -> Settings:
         anthropic_api_key=anthropic_api_key,
         openai_api_key=openai_api_key,
         deepseek_api_key=deepseek_api_key,
+        openrouter_api_key=openrouter_api_key,
+        openrouter_base_url=openrouter_base_url,
+        aws_api_key=aws_api_key,
+        aws_base_url=aws_base_url,
         custom_llm_api_key=custom_llm_api_key,
         custom_llm_base_url=custom_llm_base_url,
         model_main=model_main,
@@ -190,6 +207,8 @@ def update_settings(**kwargs: Any) -> Settings:
         current.anthropic_api_key
         or current.openai_api_key
         or current.deepseek_api_key
+        or current.openrouter_api_key
+        or current.aws_api_key
         or current.custom_llm_api_key
         or current.rag_llm_api_key
     )

@@ -119,6 +119,10 @@ def _call_openai_compatible_api(
         headers["Authorization"] = f"Bearer {api_key}"
         headers["X-API-Key"] = api_key
 
+    if "openrouter.ai" in clean_base:
+        headers["HTTP-Referer"] = "http://localhost:3000"
+        headers["X-Title"] = "Juris AI"
+
     payload: Dict[str, Any] = {
         "model": model,
         "messages": [
