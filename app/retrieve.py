@@ -150,6 +150,7 @@ def search(
     risk_tags: Optional[List[str]] = None,
     k: int = 8,
     chroma_dir: Optional[Path] = None,
+    llm_client: Optional[Any] = None,
 ) -> List[ContextItem]:
     """
     Execute hybrid RAG search:
@@ -159,6 +160,7 @@ def search(
     4. Use llm.small_json to select best k from top 20 fused candidates (fallback to fusion order).
     5. Guarantee >= 1 item per requested jurisdiction (if present in fused list) and cap total text at 12,000 chars.
     """
+    active_llm = llm_client or llm
     k = max(1, min(int(k), 20))
     req_jurisdictions = [j.upper() for j in (jurisdictions or ["BD", "US", "EU"]) if j.upper() in ("BD", "US", "EU")]
     if not req_jurisdictions:
@@ -176,7 +178,7 @@ def search(
     )
     rewritten: List[str] = []
     try:
-        rw_resp = llm.small_json(rewrite_system, query)
+        rw_resp = active_llm.small_json(rewrite_system, query)
         if isinstance(rw_resp, dict) and isinstance(rw_resp.get("queries"), list):
             rewritten = [str(q).strip() for q in rw_resp["queries"] if str(q).strip()][:3]
     except Exception:
@@ -255,7 +257,7 @@ def search(
             m = d["metadata"]
             summary_lines.append(f"ID: {did} | [{m['jurisdiction']}] {m['citation_string']} - {d['text'][:160]}")
         try:
-            sel_resp = llm.small_json(select_system, "\n".join(summary_lines))
+            sel_resp = active_llm.small_json(select_system, "\n".join(summary_lines))
             if isinstance(sel_resp, dict) and isinstance(sel_resp.get("ids"), list):
                 valid_set = set(top_20_ids)
                 for sid in sel_resp["ids"]:

@@ -83,6 +83,7 @@ def analyze_document(
     jurisdictions: Optional[List[str]] = None,
     doc_name: Optional[str] = None,
     chroma_dir: Optional[Path] = None,
+    llm_client: Optional[Any] = None,
 ) -> AnalyzeResponse:
     """
     Full multi-stage contract analysis pipeline:
@@ -94,7 +95,8 @@ def analyze_document(
     f. Attach disclaimer and timings_ms without logging document content.
     """
     t_start = time.perf_counter()
-    cfg = load_settings()
+    active_llm = llm_client or llm
+    cfg = active_llm.settings
 
     if len(document_text) > cfg.max_doc_chars:
         raise DocumentTooLargeError(
@@ -118,7 +120,7 @@ def analyze_document(
         "liability caps, termination/renewal, and governing law / cross-border effects. "
         'Return JSON: {"queries": ["q1", "q2", "q3", "q4", "q5"]}.'
     )
-    plan_resp = llm.small_json(planning_system, clause_preview or document_text[:1500])
+    plan_resp = active_llm.small_json(planning_system, clause_preview or document_text[:1500])
     issue_queries: List[str] = []
     if isinstance(plan_resp, dict) and isinstance(plan_resp.get("queries"), list):
         issue_queries = [str(q).strip() for q in plan_resp["queries"] if str(q).strip()][:6]
@@ -143,6 +145,7 @@ def analyze_document(
             risk_tags=None,
             k=8,
             chroma_dir=chroma_dir,
+            llm_client=active_llm,
         )
         for item in hits:
             if item.id in bundle_by_id:
@@ -168,7 +171,7 @@ def analyze_document(
         },
         ensure_ascii=False,
     )
-    raw_analysis = llm.main_json(ANALYSIS_SYSTEM_PROMPT, analysis_user_payload)
+    raw_analysis = active_llm.main_json(ANALYSIS_SYSTEM_PROMPT, analysis_user_payload)
     t_analysis_ms = max(1, int((time.perf_counter() - t_an0) * 1000))
 
     # Stage 4: Deterministic citation verification (pure Python, overrides model status)
@@ -266,7 +269,7 @@ def analyze_document(
         },
         ensure_ascii=False,
     )
-    memo_markdown = llm.main_text(MEMO_SYSTEM_PROMPT, memo_payload)
+    memo_markdown = active_llm.main_text(MEMO_SYSTEM_PROMPT, memo_payload)
 
     # Hard guardrail: strip any unverified citation string if it ever leaked into memo_markdown
     for bad_cit in unverified_strings:
@@ -311,7 +314,11 @@ def analyze_document(
         verification=VerificationCounts(**counts),
         memo_markdown=memo_markdown,
         disclaimer=DISCLAIMER_TEXT,
-        model_info=ModelInfo(main=cfg.model_main, small=cfg.model_small, mock=cfg.mock_llm),
+        model_info=ModelInfo(
+            main=active_llm.settings.model_main,
+            small=active_llm.settings.model_small,
+            mock=active_llm.is_mock,
+        ),
         timings_ms=TimingsMs(
             rewrite=t_rewrite_ms,
             retrieval=t_retrieval_ms,
@@ -328,11 +335,13 @@ def chat_answer(
     jurisdictions: Optional[List[str]] = None,
     context_note: Optional[str] = None,
     chroma_dir: Optional[Path] = None,
+    llm_client: Optional[Any] = None,
 ) -> ChatResponse:
     """
     Answer a legal follow-up question using hybrid retrieval, citation verification, and disclaimer.
     """
-    cfg = load_settings()
+    active_llm = llm_client or llm
+    cfg = active_llm.settings
     req_jurisdictions = [
         j.upper() for j in (jurisdictions or ["BD", "US", "EU"]) if j.upper() in ("BD", "US", "EU")
     ]
@@ -350,6 +359,7 @@ def chat_answer(
         risk_tags=None,
         k=8,
         chroma_dir=chroma_dir,
+        llm_client=active_llm,
     )
 
     # Verify the retrieved context citations
@@ -380,7 +390,7 @@ def chat_answer(
         ensure_ascii=False,
     )
 
-    answer_md = llm.main_text(CHAT_SYSTEM_PROMPT, chat_payload)
+    answer_md = active_llm.main_text(CHAT_SYSTEM_PROMPT, chat_payload)
     if not answer_md.strip().endswith(DISCLAIMER_TEXT):
         answer_md = f"{answer_md.rstrip()}\n\n{DISCLAIMER_TEXT}"
 
@@ -388,5 +398,5 @@ def chat_answer(
         answer_markdown=answer_md,
         citations=verified_citations[:6],
         disclaimer=DISCLAIMER_TEXT,
-        mock=cfg.mock_llm,
+        mock=active_llm.is_mock,
     )

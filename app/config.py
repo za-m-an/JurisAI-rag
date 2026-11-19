@@ -3,7 +3,7 @@
 import os
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List
+from typing import Any, Dict, List, Optional
 
 
 RAG_ROOT = Path(__file__).resolve().parent.parent
@@ -20,10 +20,21 @@ DISCLAIMER_TEXT = (
 class Settings:
     env: str = "dev"
     rag_api_key: str = "dev-rag-key"
+    llm_provider: str = "anthropic"  # 'anthropic' | 'openai' | 'deepseek' | 'custom'
     anthropic_api_key: str = ""
-    model_main: str = "claude-sonnet-5-5"
-    model_small: str = "claude-haiku-5-5"
     openai_api_key: str = ""
+    deepseek_api_key: str = ""
+    custom_llm_api_key: str = ""
+    custom_llm_base_url: str = ""
+    model_main: str = "claude-sonnet-5-5"
+
+    # Separate configuration for the RAG auxiliary model (query rewriting & selection)
+    # Allows fast cloud API models (e.g. gpt-4o-mini, deepseek-chat) without embedding a local SLM
+    rag_llm_provider: str = "openai"  # 'openai' | 'deepseek' | 'anthropic' | 'custom'
+    rag_llm_api_key: str = ""
+    rag_llm_base_url: str = ""
+    model_small: str = "claude-haiku-5-5"
+
     embeddings_backend: str = "hash"
     mock_llm: bool = True
     max_doc_chars: int = 150000
@@ -31,9 +42,57 @@ class Settings:
     data_dir: Path = DEFAULT_DATA_DIR
     chroma_dir: Path = DEFAULT_CHROMA_DIR
 
+    def get_provider(self, tier: str = "main") -> str:
+        if tier in ("small", "rag"):
+            return (self.rag_llm_provider or self.llm_provider or "openai").lower()
+        return (self.llm_provider or "anthropic").lower()
+
+    def get_api_key(self, tier: str = "main") -> str:
+        provider = self.get_provider(tier)
+        if tier in ("small", "rag") and self.rag_llm_api_key:
+            return self.rag_llm_api_key
+        if provider == "anthropic":
+            return self.anthropic_api_key
+        if provider == "openai":
+            return self.openai_api_key
+        if provider == "deepseek":
+            return self.deepseek_api_key or self.openai_api_key
+        if provider == "custom":
+            return self.custom_llm_api_key
+        return ""
+
+    def get_base_url(self, tier: str = "main") -> str:
+        provider = self.get_provider(tier)
+        if tier in ("small", "rag") and self.rag_llm_base_url:
+            return self.rag_llm_base_url
+        if provider == "deepseek":
+            return "https://api.deepseek.com"
+        if provider == "openai":
+            return "https://api.openai.com/v1"
+        if provider == "custom":
+            return self.custom_llm_base_url
+        return ""
+
+    def get_model(self, tier: str = "main") -> str:
+        if tier in ("small", "rag"):
+            return self.model_small
+        return self.model_main
+
+    def is_provider_ready(self, tier: str = "main") -> bool:
+        if self.mock_llm:
+            return True
+        return bool(self.get_api_key(tier))
+
+
+_ACTIVE_SETTINGS: Optional[Settings] = None
+
 
 def load_settings() -> Settings:
-    """Load and validate configuration from environment variables."""
+    """Load and validate configuration from environment variables or active runtime settings."""
+    global _ACTIVE_SETTINGS
+    if _ACTIVE_SETTINGS is not None:
+        return _ACTIVE_SETTINGS
+
     env = os.getenv("ENV", "dev").strip().lower() or "dev"
     if env not in ("dev", "production"):
         env = "dev"
@@ -43,10 +102,18 @@ def load_settings() -> Settings:
         raise RuntimeError("RAG_API_KEY must be set when ENV=production")
     rag_api_key = raw_api_key if raw_api_key else "dev-rag-key"
 
+    llm_provider = os.getenv("LLM_PROVIDER", "anthropic").strip().lower() or "anthropic"
     anthropic_api_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
-    model_main = os.getenv("MODEL_MAIN", "claude-sonnet-5-5").strip() or "claude-sonnet-5-5"
-    model_small = os.getenv("MODEL_SMALL", "claude-haiku-5-5").strip() or "claude-haiku-5-5"
     openai_api_key = os.getenv("OPENAI_API_KEY", "").strip()
+    deepseek_api_key = os.getenv("DEEPSEEK_API_KEY", "").strip()
+    custom_llm_api_key = os.getenv("CUSTOM_LLM_API_KEY", "").strip()
+    custom_llm_base_url = os.getenv("CUSTOM_LLM_BASE_URL", "").strip()
+    model_main = os.getenv("MODEL_MAIN", "claude-sonnet-5-5").strip() or "claude-sonnet-5-5"
+
+    rag_llm_provider = os.getenv("RAG_LLM_PROVIDER", "openai").strip().lower() or "openai"
+    rag_llm_api_key = os.getenv("RAG_LLM_API_KEY", "").strip()
+    rag_llm_base_url = os.getenv("RAG_LLM_BASE_URL", "").strip()
+    model_small = os.getenv("MODEL_SMALL", "claude-haiku-5-5").strip() or "claude-haiku-5-5"
 
     raw_emb = os.getenv("EMBEDDINGS_BACKEND", "").strip().lower()
     if raw_emb in ("openai", "local", "hash"):
@@ -54,13 +121,16 @@ def load_settings() -> Settings:
     else:
         embeddings_backend = "openai" if openai_api_key else "hash"
 
+    has_any_key = bool(
+        anthropic_api_key or openai_api_key or deepseek_api_key or custom_llm_api_key or rag_llm_api_key
+    )
     raw_mock = os.getenv("MOCK_LLM", "").strip().lower()
     if raw_mock in ("1", "true", "yes"):
         mock_llm = True
-    elif raw_mock in ("0", "false", "no") and anthropic_api_key:
+    elif raw_mock in ("0", "false", "no") and has_any_key:
         mock_llm = False
     else:
-        mock_llm = not bool(anthropic_api_key)
+        mock_llm = not has_any_key
 
     try:
         max_doc_chars = int(os.getenv("MAX_DOC_CHARS", "150000"))
@@ -73,13 +143,20 @@ def load_settings() -> Settings:
     data_dir = Path(os.getenv("RAG_DATA_DIR", str(DEFAULT_DATA_DIR)))
     chroma_dir = Path(os.getenv("RAG_CHROMA_DIR", str(DEFAULT_CHROMA_DIR)))
 
-    return Settings(
+    _ACTIVE_SETTINGS = Settings(
         env=env,
         rag_api_key=rag_api_key,
+        llm_provider=llm_provider,
         anthropic_api_key=anthropic_api_key,
-        model_main=model_main,
-        model_small=model_small,
         openai_api_key=openai_api_key,
+        deepseek_api_key=deepseek_api_key,
+        custom_llm_api_key=custom_llm_api_key,
+        custom_llm_base_url=custom_llm_base_url,
+        model_main=model_main,
+        rag_llm_provider=rag_llm_provider,
+        rag_llm_api_key=rag_llm_api_key,
+        rag_llm_base_url=rag_llm_base_url,
+        model_small=model_small,
         embeddings_backend=embeddings_backend,
         mock_llm=mock_llm,
         max_doc_chars=max_doc_chars,
@@ -87,3 +164,23 @@ def load_settings() -> Settings:
         data_dir=data_dir,
         chroma_dir=chroma_dir,
     )
+    return _ACTIVE_SETTINGS
+
+
+def update_settings(**kwargs: Any) -> Settings:
+    """Update active runtime settings dynamically."""
+    current = load_settings()
+    for k, v in kwargs.items():
+        if hasattr(current, k) and v is not None:
+            setattr(current, k, v)
+    # Recalculate mock_llm if keys or provider changed
+    has_any_key = bool(
+        current.anthropic_api_key
+        or current.openai_api_key
+        or current.deepseek_api_key
+        or current.custom_llm_api_key
+        or current.rag_llm_api_key
+    )
+    if "mock_llm" not in kwargs:
+        current.mock_llm = not has_any_key
+    return current

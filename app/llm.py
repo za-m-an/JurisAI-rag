@@ -1,8 +1,11 @@
-"""LLM wrapper supporting deterministic Mock Mode and Anthropic SDK Real Mode."""
+"""LLM wrapper supporting multi-provider dispatch (Anthropic, OpenAI, DeepSeek, Custom) and deterministic Mock Mode."""
 
 import json
+import logging
 import re
 from typing import Any, Dict, List, Optional
+
+import httpx
 
 try:
     import anthropic
@@ -19,6 +22,8 @@ except ImportError:
     )
 
 from .config import DISCLAIMER_TEXT, Settings, load_settings
+
+logger = logging.getLogger("juris_rag.llm")
 
 
 class LLMUnavailableError(Exception):
@@ -39,8 +44,113 @@ def strip_code_fences(text: str) -> str:
     return cleaned.strip()
 
 
+def _call_anthropic_api(
+    model: str,
+    system: str,
+    user: str,
+    temperature: float = 0.0,
+    api_key: str = "",
+) -> str:
+    """Call Anthropic Messages API using SDK or direct HTTPX."""
+    if not api_key:
+        raise LLMUnavailableError("Anthropic API key is not configured")
+
+    if anthropic is not None:
+        try:
+            client = anthropic.Anthropic(api_key=api_key)
+            response = client.messages.create(
+                model=model,
+                max_tokens=4096,
+                temperature=temperature,
+                system=system,
+                messages=[{"role": "user", "content": user}],
+            )
+            parts: List[str] = []
+            for block in getattr(response, "content", []):
+                text_val = getattr(block, "text", None)
+                if text_val:
+                    parts.append(text_val)
+            return "\n".join(parts).strip()
+        except Exception as exc:
+            logger.warning(f"Anthropic SDK call failed, falling back to HTTPX: {exc}")
+
+    headers = {
+        "x-api-key": api_key,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+    }
+    payload = {
+        "model": model,
+        "max_tokens": 4096,
+        "temperature": temperature,
+        "system": system,
+        "messages": [{"role": "user", "content": user}],
+    }
+    with httpx.Client(timeout=60.0) as client:
+        resp = client.post("https://api.anthropic.com/v1/messages", headers=headers, json=payload)
+        if resp.status_code >= 400:
+            raise LLMUnavailableError(f"Anthropic API error ({resp.status_code}): {resp.text}")
+        data = resp.json()
+        content = data.get("content", [])
+        parts = [c.get("text", "") for c in content if isinstance(c, dict) and c.get("text")]
+        return "\n".join(parts).strip()
+
+
+def _call_openai_compatible_api(
+    model: str,
+    system: str,
+    user: str,
+    temperature: float = 0.0,
+    api_key: str = "",
+    base_url: str = "",
+    json_mode: bool = False,
+) -> str:
+    """Call OpenAI-compatible /chat/completions (OpenAI, DeepSeek, Groq, Ollama, Custom)."""
+    clean_base = (base_url or "https://api.openai.com/v1").rstrip("/")
+    is_local = "localhost" in clean_base or "127.0.0.1" in clean_base
+    if not api_key and not is_local:
+        raise LLMUnavailableError(f"API key is not configured for {clean_base}")
+
+    url = f"{clean_base}/chat/completions"
+    headers: Dict[str, str] = {
+        "Content-Type": "application/json",
+    }
+    if api_key:
+        headers["Authorization"] = f"Bearer {api_key}"
+        headers["X-API-Key"] = api_key
+
+    payload: Dict[str, Any] = {
+        "model": model,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        "temperature": temperature,
+        "max_tokens": 4096,
+    }
+    if json_mode and "deepseek-reasoner" not in model:
+        payload["response_format"] = {"type": "json_object"}
+
+    with httpx.Client(timeout=60.0) as client:
+        resp = client.post(url, headers=headers, json=payload)
+        if resp.status_code >= 400 and json_mode and "response_format" in payload:
+            # Fallback if response_format unsupported
+            payload.pop("response_format", None)
+            resp = client.post(url, headers=headers, json=payload)
+
+        if resp.status_code >= 400:
+            raise LLMUnavailableError(f"LLM API error ({resp.status_code}): {resp.text}")
+
+        data = resp.json()
+        choices = data.get("choices", [])
+        if not choices:
+            raise LLMUnavailableError("LLM response contained no choices")
+        message = choices[0].get("message", {})
+        return str(message.get("content") or "").strip()
+
+
 class LLMClient:
-    """Wraps all LLM calls behind small_json, main_json, and main_text."""
+    """Wraps all LLM calls behind small_json, main_json, and main_text with multi-provider routing."""
 
     def __init__(self, settings: Optional[Settings] = None):
         self._settings = settings
@@ -55,51 +165,76 @@ class LLMClient:
         return self.settings.mock_llm
 
     def small_json(self, system: str, user: str) -> Dict[str, Any]:
-        if self.is_mock:
+        """Auxiliary model for query rewriting and context candidate selection."""
+        if self.is_mock or not self.settings.is_provider_ready("small"):
             return self._mock_small_json(system, user)
-        return self._call_json(model=self.settings.model_small, system=system, user=user, temperature=0.0)
+        return self._call_json(tier="small", system=system, user=user, temperature=0.0)
 
     def main_json(self, system: str, user: str) -> Dict[str, Any]:
-        if self.is_mock:
+        """Primary reasoning model for contract risk analysis."""
+        if self.is_mock or not self.settings.is_provider_ready("main"):
             return self._mock_main_json(system, user)
-        return self._call_json(model=self.settings.model_main, system=system, user=user, temperature=0.0)
+        return self._call_json(tier="main", system=system, user=user, temperature=0.0)
 
     def main_text(self, system: str, user: str) -> str:
-        if self.is_mock:
+        """Primary reasoning model for legal memorandum drafting."""
+        if self.is_mock or not self.settings.is_provider_ready("main"):
             return self._mock_main_text(system, user)
-        return self._call_text(model=self.settings.model_main, system=system, user=user, temperature=0.0)
+        return self._call_text(tier="main", system=system, user=user, temperature=0.0)
 
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=8), reraise=True)
-    def _raw_anthropic_call(self, model: str, system: str, user: str, temperature: float = 0.0) -> str:
-        if not self.settings.anthropic_api_key:
-            raise LLMUnavailableError("ANTHROPIC_API_KEY is not configured")
-        client = anthropic.Anthropic(api_key=self.settings.anthropic_api_key)
-        response = client.messages.create(
-            model=model,
-            max_tokens=4096,
-            temperature=temperature,
-            system=system,
-            messages=[{"role": "user", "content": user}],
-        )
-        parts: List[str] = []
-        for block in getattr(response, "content", []):
-            text_val = getattr(block, "text", None)
-            if text_val:
-                parts.append(text_val)
-        return "\n".join(parts).strip()
+    def _dispatch_raw(
+        self,
+        tier: str,
+        system: str,
+        user: str,
+        temperature: float = 0.0,
+        json_mode: bool = False,
+    ) -> str:
+        provider = self.settings.get_provider(tier)
+        api_key = self.settings.get_api_key(tier)
+        base_url = self.settings.get_base_url(tier)
+        model = self.settings.get_model(tier)
 
-    def _call_text(self, model: str, system: str, user: str, temperature: float = 0.0) -> str:
+        if provider == "anthropic":
+            return _call_anthropic_api(
+                model=model,
+                system=system,
+                user=user,
+                temperature=temperature,
+                api_key=api_key,
+            )
+        elif provider in ("openai", "deepseek", "custom"):
+            return _call_openai_compatible_api(
+                model=model,
+                system=system,
+                user=user,
+                temperature=temperature,
+                api_key=api_key,
+                base_url=base_url,
+                json_mode=json_mode,
+            )
+        else:
+            raise LLMUnavailableError(f"Unsupported LLM provider: {provider}")
+
+    def _call_text(self, tier: str, system: str, user: str, temperature: float = 0.0) -> str:
         try:
-            return self._raw_anthropic_call(model=model, system=system, user=user, temperature=temperature)
+            return self._dispatch_raw(tier=tier, system=system, user=user, temperature=temperature, json_mode=False)
         except Exception as exc:
-            raise LLMUnavailableError(f"LLM text generation failed: {exc}") from exc
+            raise LLMUnavailableError(f"LLM text generation failed ({tier}): {exc}") from exc
 
-    def _call_json(self, model: str, system: str, user: str, temperature: float = 0.0) -> Dict[str, Any]:
+    def _call_json(self, tier: str, system: str, user: str, temperature: float = 0.0) -> Dict[str, Any]:
         json_system = f"{system.strip()}\n\nRespond ONLY with valid JSON. Do not include markdown code fences."
         try:
-            raw = self._raw_anthropic_call(model=model, system=json_system, user=user, temperature=temperature)
+            raw = self._dispatch_raw(
+                tier=tier,
+                system=json_system,
+                user=user,
+                temperature=temperature,
+                json_mode=True,
+            )
         except Exception as exc:
-            raise LLMUnavailableError(f"LLM JSON request failed: {exc}") from exc
+            raise LLMUnavailableError(f"LLM JSON request failed ({tier}): {exc}") from exc
 
         cleaned = strip_code_fences(raw)
         try:
@@ -116,11 +251,12 @@ class LLMClient:
             f"{raw}"
         )
         try:
-            repaired_raw = self._raw_anthropic_call(
-                model=model,
+            repaired_raw = self._dispatch_raw(
+                tier=tier,
                 system="You are a strict JSON repair assistant. Output ONLY valid JSON.",
                 user=repair_user,
                 temperature=0.0,
+                json_mode=True,
             )
             repaired_clean = strip_code_fences(repaired_raw)
             parsed = json.loads(repaired_clean)

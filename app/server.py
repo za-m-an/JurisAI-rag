@@ -5,7 +5,8 @@ import logging
 import time
 import uuid
 from contextlib import asynccontextmanager
-from typing import Optional
+from dataclasses import replace
+from typing import Any, Dict, Optional
 from urllib.parse import unquote
 
 from fastapi import Depends, FastAPI, Header, Request
@@ -16,9 +17,9 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from . import __version__
 from .analyze import DocumentTooLargeError, analyze_document, chat_answer
-from .config import load_settings
+from .config import Settings, load_settings, update_settings
 from .ingest import run_ingest
-from .llm import LLMUnavailableError
+from .llm import LLMClient, LLMUnavailableError
 from .models import (
     AnalyzeRequest,
     ChatRequest,
@@ -229,6 +230,76 @@ def create_app() -> FastAPI:
                 message="Corpus index is missing; run python -m app.ingest",
             )
 
+    def resolve_request_llm_client(request: Request) -> LLMClient:
+        base = load_settings()
+        overrides: Dict[str, Any] = {}
+        h = request.headers
+
+        if h.get("x-llm-provider"):
+            overrides["llm_provider"] = h.get("x-llm-provider", "").strip().lower()
+        if h.get("x-llm-api-key"):
+            overrides["anthropic_api_key"] = h.get("x-llm-api-key", "").strip()
+            overrides["openai_api_key"] = h.get("x-llm-api-key", "").strip()
+            overrides["deepseek_api_key"] = h.get("x-llm-api-key", "").strip()
+            overrides["custom_llm_api_key"] = h.get("x-llm-api-key", "").strip()
+        if h.get("x-llm-model-main"):
+            overrides["model_main"] = h.get("x-llm-model-main", "").strip()
+        if h.get("x-llm-base-url"):
+            overrides["custom_llm_base_url"] = h.get("x-llm-base-url", "").strip()
+
+        if h.get("x-rag-llm-provider"):
+            overrides["rag_llm_provider"] = h.get("x-rag-llm-provider", "").strip().lower()
+        if h.get("x-rag-llm-api-key"):
+            overrides["rag_llm_api_key"] = h.get("x-rag-llm-api-key", "").strip()
+        if h.get("x-rag-llm-model"):
+            overrides["model_small"] = h.get("x-rag-llm-model", "").strip()
+        if h.get("x-rag-llm-base-url"):
+            overrides["rag_llm_base_url"] = h.get("x-rag-llm-base-url", "").strip()
+
+        if overrides:
+            req_settings = replace(base, **overrides)
+            has_any = bool(
+                req_settings.anthropic_api_key
+                or req_settings.openai_api_key
+                or req_settings.deepseek_api_key
+                or req_settings.custom_llm_api_key
+                or req_settings.rag_llm_api_key
+            )
+            req_settings.mock_llm = not has_any
+            return LLMClient(settings=req_settings)
+        return LLMClient(settings=base)
+
+    @app.get("/config", dependencies=[Depends(require_api_key)])
+    def get_runtime_config():
+        settings = load_settings()
+        def mask(s: str) -> Optional[str]:
+            if not s:
+                return None
+            return "••••" if len(s) <= 4 else f"••••{s[-4:]}"
+        return {
+            "status": "ok",
+            "env": settings.env,
+            "mock_llm": settings.mock_llm,
+            "embeddings_backend": settings.embeddings_backend,
+            "llm_provider": settings.llm_provider,
+            "model_main": settings.model_main,
+            "has_main_key": bool(settings.get_api_key("main")),
+            "main_key_masked": mask(settings.get_api_key("main")),
+            "rag_llm_provider": settings.rag_llm_provider,
+            "model_small": settings.model_small,
+            "has_rag_key": bool(settings.get_api_key("small")),
+            "rag_key_masked": mask(settings.get_api_key("small")),
+        }
+
+    @app.put("/config", dependencies=[Depends(require_api_key)])
+    async def put_runtime_config(request: Request):
+        try:
+            body = await request.json()
+        except Exception:
+            raise ServiceAPIError(status_code=400, error="invalid_json", message="Request body must be valid JSON")
+        updated = update_settings(**body)
+        return {"status": "ok", "mock_llm": updated.mock_llm}
+
     @app.get("/health", response_model=HealthResponse)
     def get_health():
         settings = load_settings()
@@ -244,9 +315,10 @@ def create_app() -> FastAPI:
         return model_to_dict(resp)
 
     @app.post("/rag/search", response_model=SearchResponse, dependencies=[Depends(require_api_key)])
-    def post_rag_search(payload: SearchRequest):
+    def post_rag_search(payload: SearchRequest, request: Request):
         settings = load_settings()
         ensure_index_available()
+        llm_client = resolve_request_llm_client(request)
         try:
             items = search(
                 query=payload.query,
@@ -254,21 +326,24 @@ def create_app() -> FastAPI:
                 risk_tags=payload.risk_tags,
                 k=payload.k,
                 chroma_dir=settings.chroma_dir,
+                llm_client=llm_client,
             )
             return model_to_dict(SearchResponse(context=items))
         except LLMUnavailableError as exc:
             raise ServiceAPIError(status_code=503, error="llm_unavailable", message=str(exc)) from exc
 
     @app.post("/analyze", dependencies=[Depends(require_api_key)])
-    def post_analyze(payload: AnalyzeRequest):
+    def post_analyze(payload: AnalyzeRequest, request: Request):
         settings = load_settings()
         ensure_index_available()
+        llm_client = resolve_request_llm_client(request)
         try:
             result = analyze_document(
                 document_text=payload.document_text,
                 jurisdictions=list(payload.jurisdictions) if payload.jurisdictions else None,
                 doc_name=payload.doc_name,
                 chroma_dir=settings.chroma_dir,
+                llm_client=llm_client,
             )
             return model_to_dict(result)
         except DocumentTooLargeError as exc:
@@ -277,15 +352,17 @@ def create_app() -> FastAPI:
             raise ServiceAPIError(status_code=503, error="llm_unavailable", message=str(exc)) from exc
 
     @app.post("/chat", dependencies=[Depends(require_api_key)])
-    def post_chat(payload: ChatRequest):
+    def post_chat(payload: ChatRequest, request: Request):
         settings = load_settings()
         ensure_index_available()
+        llm_client = resolve_request_llm_client(request)
         try:
             result = chat_answer(
                 messages=payload.messages,
                 jurisdictions=list(payload.jurisdictions) if payload.jurisdictions else None,
                 context_note=payload.context_note,
                 chroma_dir=settings.chroma_dir,
+                llm_client=llm_client,
             )
             return model_to_dict(result)
         except LLMUnavailableError as exc:
