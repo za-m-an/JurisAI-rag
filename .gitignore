@@ -1,0 +1,10 @@
+.env
+chroma_db/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+*.log
+.DS_Store
