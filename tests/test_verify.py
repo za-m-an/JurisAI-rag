@@ -16,7 +16,7 @@ def test_verify_summaries_and_unknown(tmp_path: Path):
     run_ingest(data_dir=DEFAULT_DATA_DIR, chroma_dir=chroma_dir)
 
     # Summary-only entry in CSVs -> found_in_corpus
-    res_summary = verify_citation("Competition Act 2012 (BD), s.15(1)", chroma_dir=chroma_dir)
+    res_summary = verify_citation("Contract Act 1872 (BD), s.10", chroma_dir=chroma_dir)
     assert res_summary["status"] == "found_in_corpus"
     assert "summary" in res_summary["reason"].lower()
 
