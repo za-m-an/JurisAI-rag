@@ -537,6 +537,9 @@ class LLMClient:
         question = data.get("question", user)
         allowed_citations = data.get("allowed_citations", [])
         context_note = data.get("context_note", "")
+        req_jurisdictions = data.get("jurisdictions", ["BD", "US", "EU"])
+        if not req_jurisdictions:
+            req_jurisdictions = ["BD", "US", "EU"]
 
         cit_lines = []
         for c in allowed_citations[:4]:
@@ -549,34 +552,66 @@ class LLMClient:
 
         cit_block = "\n".join(cit_lines) if cit_lines else "- Needs lawyer review against primary statutory sources."
 
+        # Dynamically build key statutory principles matching ONLY requested jurisdictions
+        points = []
+        if "BD" in req_jurisdictions:
+            points.append(
+                "- **Bangladesh (`BD`)**: Under *Contract Act 1872, s.27*, agreements restraining lawful trade or business are void to that extent. "
+                "Liquidated damages or penalty clauses are subject to judicial reasonableness under *s.74*, while anti-competitive vertical restraints "
+                "(exclusive dealing, tie-in, resale price maintenance) fall under *Competition Act 2012, s.15(3)*."
+            )
+        if "US" in req_jurisdictions:
+            points.append(
+                "- **United States (`US`)**: Vertical agreements and commercial restraints are reviewed under the antitrust rule of reason (*15 U.S.C. § 1*), "
+                "with liquidation of damages governed by *UCC § 2-718*."
+            )
+        if "EU" in req_jurisdictions:
+            points.append(
+                "- **European Union (`EU`)**: Non-competes and distribution agreements must align with *TFEU Article 101* and the safe harbor thresholds in *VBER 2022/720*."
+            )
+        points_block = "\n".join(points) if points else "- Relevant statutory principles apply based on governing law."
+
         # If in conversational mode (and not analyzing an attached contract), act as a conversational chatbot
         if mode == "conversational" and "attached contract" not in context_note.lower():
+            scope_notice = f"Focusing strictly on **{', '.join(req_jurisdictions)}** jurisprudence:" if len(req_jurisdictions) < 3 else "Across applicable jurisdictions:"
             return (
                 f"Hello! I am your Juris AI Legal Copilot.\n\n"
                 f"Regarding your question about **{question[:120]}**:\n\n"
-                f"In commercial and civil transactions, this primarily involves statutory rules across your selected jurisdictions:\n\n"
+                f"{scope_notice}\n\n"
                 f"{cit_block}\n\n"
                 f"**Key Statutory Principles:**\n"
-                f"- **Bangladesh (`BD`)**: Under *Contract Act 1872, s.27*, agreements restraining lawful trade or business are void to that extent. Stipulated damages or penalty clauses are subject to judicial reasonableness under *s.74*.\n"
-                f"- **United States (`US`)**: Vertical agreements and commercial restraints are reviewed under the antitrust rule of reason (*15 U.S.C. § 1*), with liquidation of damages governed by *UCC § 2-718*.\n"
-                f"- **European Union (`EU`)**: Non-competes and distribution agreements must align with *TFEU Article 101* and the safe harbor thresholds in *VBER 2022/720*.\n\n"
-                f"Would you like me to elaborate on a specific jurisdiction, or attach an agreement using the 📎 button below to run a deep clause-by-clause review?"
+                f"{points_block}\n\n"
+                f"Would you like me to elaborate on this provision, or attach an agreement using the 📎 button below to run a deep clause-by-clause review?"
             )
 
         # Formal memorandum mode (or attached contract analysis)
+        memo_points = []
+        if "BD" in req_jurisdictions:
+            memo_points.append(
+                "1. **Bangladesh (`BD`)**: Restraints of trade are generally void under `Contract Act 1872 (BD), s.27`, "
+                "stipulated penalties are limited to reasonable compensation under `Contract Act 1872 (BD), s.74`, and "
+                "anti-competitive vertical restraints fall under `Competition Act 2012 (BD), s.15(3)`."
+            )
+        if "US" in req_jurisdictions:
+            memo_points.append(
+                "2. **United States (`US`)**: Vertical restraints and minimum resale price agreements are scrutinised under "
+                "`15 U.S.C. § 1` and `15 U.S.C. § 14`, while penalty clauses and remedy limitations are governed by "
+                "`UCC § 2-718` and `UCC § 2-719`."
+            )
+        if "EU" in req_jurisdictions:
+            memo_points.append(
+                "3. **European Union (`EU`)**: Hardcore resale price maintenance (`VBER 2022/720, Art. 4`) and non-competes "
+                "exceeding 5 years or post-term (`VBER 2022/720, Art. 5`) lose block exemption under `TFEU Art. 101(1)`."
+            )
+        memo_analysis_block = "\n".join(memo_points) if memo_points else "General statutory review principles apply."
+
         return (
             f"### Legal Advisory Memorandum\n\n"
-            f"**Subject:** In-depth Legal Risk Review — {question[:120]}\n\n"
+            f"**Subject:** In-depth Legal Risk Review — {question[:120]}\n"
+            f"**Jurisdictions Analysed:** {', '.join(req_jurisdictions)}\n\n"
             f"#### Applicable Authorities\n{cit_block}\n\n"
             f"#### Statutory Analysis & Considerations\n"
-            f"1. **Bangladesh (`BD`)**: Restraints of trade are generally void under `Contract Act 1872 (BD), s.27`, "
-            f"stipulated penalties are limited to reasonable compensation under `Contract Act 1872 (BD), s.74`, and "
-            f"anti-competitive vertical restraints fall under `Competition Act 2012 (BD), s.15(3)`.\n"
-            f"2. **United States (`US`)**: Vertical restraints and minimum resale price agreements are scrutinised under "
-            f"`15 U.S.C. § 1` and `15 U.S.C. § 14`, while penalty clauses and remedy limitations are governed by "
-            f"`UCC § 2-718` and `UCC § 2-719`.\n"
-            f"3. **European Union (`EU`)**: Hardcore resale price maintenance (`VBER 2022/720, Art. 4`) and non-competes "
-            f"exceeding 5 years or post-term (`VBER 2022/720, Art. 5`) lose block exemption under `TFEU Art. 101(1)`.\n\n"
+            f"{memo_analysis_block}\n\n"
             f"#### Risk Classification & Recommendations\n"
             f"- **High Risk**: Review unilateral penalty provisions and territorial exclusivity restrictions.\n"
             f"- **Mitigation**: Introduce severability carveouts and align termination covenants with local statutory standards.\n\n"

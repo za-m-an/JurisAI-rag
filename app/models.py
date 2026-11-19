@@ -160,6 +160,7 @@ class ChatResponse(BaseModel):
     citations: List[ChatCitation]
     disclaimer: str
     mock: bool
+    thinking: Optional[str] = None
 
 
 class CitationLookupResponse(BaseModel):

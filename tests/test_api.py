@@ -187,7 +187,8 @@ def test_chat_endpoint_and_validation(client: TestClient):
     )
     assert r.status_code == 200
     data = r.json()
-    assert set(data.keys()) == {"answer_markdown", "citations", "disclaimer", "mock"}
+    assert set(data.keys()) == {"answer_markdown", "citations", "disclaimer", "mock", "thinking"}
+    assert data["thinking"] is not None
     assert data["disclaimer"] in data["answer_markdown"]
     for c in data["citations"]:
         assert set(c.keys()) == {"citation_string", "status", "reason"}
