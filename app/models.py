@@ -128,6 +128,7 @@ class ChatRequest(BaseModel):
     messages: List[ChatMessage] = Field(..., min_length=1, max_length=12)
     jurisdictions: Optional[List[JurisdictionCode]] = None
     context_note: Optional[str] = Field(default=None, max_length=8000)
+    mode: Optional[str] = Field(default="conversational")
 
     if PYDANTIC_V2:
         @_field_validator("messages")

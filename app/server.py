@@ -361,6 +361,7 @@ def create_app() -> FastAPI:
                 messages=payload.messages,
                 jurisdictions=list(payload.jurisdictions) if payload.jurisdictions else None,
                 context_note=payload.context_note,
+                mode=payload.mode or "conversational",
                 chroma_dir=settings.chroma_dir,
                 llm_client=llm_client,
             )

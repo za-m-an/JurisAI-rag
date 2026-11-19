@@ -20,17 +20,21 @@ DISCLAIMER_TEXT = (
 class Settings:
     env: str = "dev"
     rag_api_key: str = "dev-rag-key"
-    llm_provider: str = "anthropic"  # 'anthropic' | 'openai' | 'deepseek' | 'custom'
+    llm_provider: str = "anthropic"  # 'anthropic' | 'openai' | 'deepseek' | 'openrouter' | 'aws' | 'custom'
     anthropic_api_key: str = ""
     openai_api_key: str = ""
     deepseek_api_key: str = ""
+    openrouter_api_key: str = ""
+    openrouter_base_url: str = "https://openrouter.ai/api/v1"
+    aws_api_key: str = ""
+    aws_base_url: str = "https://bedrock-runtime.us-east-1.amazonaws.com"
     custom_llm_api_key: str = ""
     custom_llm_base_url: str = ""
     model_main: str = "claude-sonnet-5-5"
 
     # Separate configuration for the RAG auxiliary model (query rewriting & selection)
     # Allows fast cloud API models (e.g. gpt-4o-mini, deepseek-chat) without embedding a local SLM
-    rag_llm_provider: str = "openai"  # 'openai' | 'deepseek' | 'anthropic' | 'custom'
+    rag_llm_provider: str = "openai"  # 'openai' | 'deepseek' | 'anthropic' | 'openrouter' | 'aws' | 'custom'
     rag_llm_api_key: str = ""
     rag_llm_base_url: str = ""
     model_small: str = "claude-haiku-5-5"
@@ -57,6 +61,10 @@ class Settings:
             return self.openai_api_key
         if provider == "deepseek":
             return self.deepseek_api_key or self.openai_api_key
+        if provider == "openrouter":
+            return self.openrouter_api_key or self.custom_llm_api_key or self.openai_api_key
+        if provider == "aws":
+            return self.aws_api_key or self.custom_llm_api_key
         if provider == "custom":
             return self.custom_llm_api_key
         return ""
@@ -69,6 +77,10 @@ class Settings:
             return "https://api.deepseek.com"
         if provider == "openai":
             return "https://api.openai.com/v1"
+        if provider == "openrouter":
+            return self.openrouter_base_url or "https://openrouter.ai/api/v1"
+        if provider == "aws":
+            return self.aws_base_url or "https://bedrock-runtime.us-east-1.amazonaws.com"
         if provider == "custom":
             return self.custom_llm_base_url
         return ""

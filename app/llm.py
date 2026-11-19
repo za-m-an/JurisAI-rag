@@ -204,7 +204,7 @@ class LLMClient:
                 temperature=temperature,
                 api_key=api_key,
             )
-        elif provider in ("openai", "deepseek", "custom"):
+        elif provider in ("openai", "deepseek", "openrouter", "aws", "custom"):
             return _call_openai_compatible_api(
                 model=model,
                 system=system,
@@ -523,23 +523,20 @@ class LLMClient:
         }
 
     def _mock_main_text(self, system: str, user: str) -> str:
-        sys_lower = system.lower()
-        # Check if this is a memo generation call vs a chat answer call
-        if "memorandum" in sys_lower or "executive summary" in sys_lower or "risk table" in sys_lower:
-            try:
-                data = json.loads(user)
-            except Exception:
-                data = {}
+        try:
+            data = json.loads(user)
+        except Exception:
+            data = {}
+
+        # If this is full contract analysis memo generation (has document_type or risks), build the full contract memo
+        if "document_type" in data or "risks" in data:
             return self._build_deterministic_memo(data)
 
         # Otherwise it's a chat answer call
-        try:
-            data = json.loads(user)
-            question = data.get("question", user)
-            allowed_citations = data.get("allowed_citations", [])
-        except Exception:
-            question = user
-            allowed_citations = []
+        mode = data.get("mode", "conversational")
+        question = data.get("question", user)
+        allowed_citations = data.get("allowed_citations", [])
+        context_note = data.get("context_note", "")
 
         cit_lines = []
         for c in allowed_citations[:4]:
@@ -551,13 +548,27 @@ class LLMClient:
                 cit_lines.append(f"- **{cs}** (corpus-listed; confirm against primary source)")
 
         cit_block = "\n".join(cit_lines) if cit_lines else "- Needs lawyer review against primary statutory sources."
+
+        # If in conversational mode (and not analyzing an attached contract), act as a conversational chatbot
+        if mode == "conversational" and "attached contract" not in context_note.lower():
+            return (
+                f"Hello! I am your Juris AI Legal Copilot.\n\n"
+                f"Regarding your question about **{question[:120]}**:\n\n"
+                f"In commercial and civil transactions, this primarily involves statutory rules across your selected jurisdictions:\n\n"
+                f"{cit_block}\n\n"
+                f"**Key Statutory Principles:**\n"
+                f"- **Bangladesh (`BD`)**: Under *Contract Act 1872, s.27*, agreements restraining lawful trade or business are void to that extent. Stipulated damages or penalty clauses are subject to judicial reasonableness under *s.74*.\n"
+                f"- **United States (`US`)**: Vertical agreements and commercial restraints are reviewed under the antitrust rule of reason (*15 U.S.C. § 1*), with liquidation of damages governed by *UCC § 2-718*.\n"
+                f"- **European Union (`EU`)**: Non-competes and distribution agreements must align with *TFEU Article 101* and the safe harbor thresholds in *VBER 2022/720*.\n\n"
+                f"Would you like me to elaborate on a specific jurisdiction, or attach an agreement using the 📎 button below to run a deep clause-by-clause review?"
+            )
+
+        # Formal memorandum mode (or attached contract analysis)
         return (
-            f"### Legal Analysis\n\n"
-            f"Regarding your inquiry (*{question[:120]}*), commercial restraints such as resale price maintenance, "
-            f"exclusive dealing, post-term non-competes, and stipulated penalty clauses must be evaluated across "
-            f"both competition law and local contract enforceability rules.\n\n"
+            f"### Legal Advisory Memorandum\n\n"
+            f"**Subject:** In-depth Legal Risk Review — {question[:120]}\n\n"
             f"#### Applicable Authorities\n{cit_block}\n\n"
-            f"#### Key Considerations\n"
+            f"#### Statutory Analysis & Considerations\n"
             f"1. **Bangladesh (`BD`)**: Restraints of trade are generally void under `Contract Act 1872 (BD), s.27`, "
             f"stipulated penalties are limited to reasonable compensation under `Contract Act 1872 (BD), s.74`, and "
             f"anti-competitive vertical restraints fall under `Competition Act 2012 (BD), s.15(3)`.\n"
@@ -566,6 +577,9 @@ class LLMClient:
             f"`UCC § 2-718` and `UCC § 2-719`.\n"
             f"3. **European Union (`EU`)**: Hardcore resale price maintenance (`VBER 2022/720, Art. 4`) and non-competes "
             f"exceeding 5 years or post-term (`VBER 2022/720, Art. 5`) lose block exemption under `TFEU Art. 101(1)`.\n\n"
+            f"#### Risk Classification & Recommendations\n"
+            f"- **High Risk**: Review unilateral penalty provisions and territorial exclusivity restrictions.\n"
+            f"- **Mitigation**: Introduce severability carveouts and align termination covenants with local statutory standards.\n\n"
             f"{DISCLAIMER_TEXT}"
         )
 
