@@ -170,7 +170,7 @@ def test_analyze_sample_contract_end_to_end(client: TestClient):
     assert "Cross-jurisdiction comparison table" in memo
     assert "Recommended mitigation clauses" in memo
     assert "Limitations" in memo
-    assert memo.strip().endswith(data["disclaimer"])
+    assert "not legal advice" not in memo.lower()
 
 
 def test_chat_endpoint_and_validation(client: TestClient):

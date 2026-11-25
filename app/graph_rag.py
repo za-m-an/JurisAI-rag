@@ -12,6 +12,7 @@ import json
 import logging
 import re
 import time
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -147,14 +148,23 @@ ANALYSIS_SYSTEM_PROMPT = (
     "Never invent statutes, sections, cases, or quotes. "
     "Quotes must be copied verbatim from the context and be under 20 words. "
     "Never mention technical terms such as 'RAG', 'knowledge graph', 'vector', 'LLM', or 'AI system' in your output. "
-    "Analyze the interaction between clauses, cross-border jurisdictional conflicts (BD, US, EU), "
-    "restraint of trade, penalties/liquidated damages, data protection, and statutory flaws. "
+    "Perform a thorough statutory, regulatory, and analytical review across: "
+    "(1) party capacity, signatory age (compute age from any stated DOB against execution date or current_date), corporate status/member limits, and board authority; "
+    "(2) formal validity (compulsory registration, stamp duty, charge registration); "
+    "(3) cross-border/FX rules, money laundering, tax/VAT rates and mandatory withholding, customs valuation, and anti-corruption/bribery; "
+    "(4) labour law compliance (hours, overtime, holidays, wages, unions, injury liability), industrial/fire/building/environmental clearances, and bailment/equipment defects; "
+    "(5) surety/guarantor protections, restraint of trade, limitation period curtailment, dispute resolution equality, electronic notice proof, and superseded/repealed statutes; "
+    "(6) internal drafting consistency (cross-schedule arithmetic, words-vs-figures mismatches, undefined terms, missing schedules, broken cross-references). "
+    "Do NOT flag balanced, customary boilerplate (quiet enjoyment, standard lessor insurance, mutual confidentiality, standard severability/counterparts, reasonable assignment with consent, standard negative pledge) as defects. "
     "Return a single strict JSON object with these exact top-level keys: "
     "'report_title' (a formal legal title describing the agreement and parties/subject, NEVER the raw PDF filename), "
     "'summary' (a polished 2-3 sentence executive legal opinion), "
-    "'document_type' (e.g. 'Commercial Supply and Distribution Agreement'), "
-    "'governing_law' (e.g. 'Laws of Bangladesh'), and "
-    "'risks' (an array of at least 3 non-obvious risk objects). "
+    "'document_type' (e.g. 'Master Services and Equipment Lease Agreement'), "
+    "'governing_law' (e.g. 'Laws of Bangladesh'), "
+    "'parties' (array of party names and roles extracted from the document, e.g. ['Apex Textile Mills Ltd. (Lessee)', 'Bengal Industrial Leasing Co. (Provider)']), "
+    "'execution_date' (the stated execution/effective date in the document, or 'Not stated'), "
+    "'material_terms' (concise 1-2 sentence summary of subject matter, term, payment/consideration, and dispute forum), and "
+    "'risks' (an array of all identified risk objects, ordered by severity). "
     "Each object in 'risks' must have: "
     "title, clause_refs, why_non_obvious, severity ('high'|'medium'|'low'), "
     "jurisdiction_notes ({'BD': '...', 'US': '...', 'EU': '...'}), "
@@ -164,11 +174,15 @@ ANALYSIS_SYSTEM_PROMPT = (
 
 MEMO_SYSTEM_PROMPT = (
     "You are a senior legal counsel at Juris AI Statutory Advisory Chambers drafting a formal legal memorandum in Markdown. "
+    "For the Memorandum header: set 'To:' to the exact 'client_name' provided in the input JSON (never write 'File / Engagement Team'), "
+    "set 'From:' to 'Senior Legal Counsel, Juris AI Statutory Advisory Chambers', "
+    "and set 'Date:' to the exact 'date' provided in the input JSON (never write '[Date]' or '[Insert Date]'). "
+    "In 'Document Facts', include the extracted 'parties', 'execution_date', 'material_terms', 'document_type', and 'governing_law'. "
     "Ground your analysis in the provided verified statutory citations and judicial precedents. "
     "Never mention technical terms such as 'RAG', 'knowledge graph', 'corpus-listed', 'AI Legal Analysis System', or 'LLM'. "
     "Required sections: Executive Summary, Document Facts, Statutory Risk Summary Table, "
     "Detailed Analysis per Risk, Cross-Jurisdiction Comparison Table, and Recommended Mitigation Clauses. "
-    "Do not include any 'not legal advice' disclaimer."
+    "Do not include any 'not legal advice' or 'informational analysis' disclaimer."
 )
 
 CHAT_SYSTEM_PROMPT = (
@@ -204,6 +218,7 @@ def analyze_document(
     document_text: str,
     jurisdictions: Optional[List[str]] = None,
     doc_name: Optional[str] = None,
+    client_name: Optional[str] = None,
     llm_client: Optional[Any] = None,
 ) -> AnalyzeResponse:
     """
@@ -266,15 +281,15 @@ def analyze_document(
             query=iq,
             jurisdictions=req_jurisdictions,
             risk_tags=None,
-            k=8,
+            k=10,
             llm_client=active_llm,
         )
         for item in hits:
             if item.id in bundle_by_id:
                 continue
-            if len(bundle_by_id) >= 40:
+            if len(bundle_by_id) >= 65:
                 break
-            if total_bundle_chars + len(item.text) > 30000:
+            if total_bundle_chars + len(item.text) > 45000:
                 continue
             bundle_by_id[item.id] = item
             total_bundle_chars += len(item.text)
@@ -292,11 +307,38 @@ def analyze_document(
         ("personal data", "data_protection"),
         ("gdpr", "data_protection"),
         ("cheating", "fraud_in_contract"),
+        ("lease", "lease_formalities"),
+        ("stamp", "lease_formalities"),
+        ("regist", "lease_formalities"),
+        ("born", "minor_capacity"),
+        ("minor", "minor_capacity"),
+        ("shareholder", "company_authority"),
+        ("board resolution", "company_authority"),
+        ("floating charge", "charge_registration"),
+        ("foreign exchange", "foreign_exchange"),
+        ("usd", "foreign_exchange"),
+        ("vat", "tax_compliance"),
+        ("withholding", "tax_compliance"),
+        ("customs", "customs_fraud"),
+        ("facilitation", "bribery_corruption"),
+        ("overtime", "labour_compliance"),
+        ("working hour", "labour_compliance"),
+        ("weekly holiday", "labour_compliance"),
+        ("union", "labour_compliance"),
+        ("boiler", "safety_environment"),
+        ("fire", "safety_environment"),
+        ("environment", "safety_environment"),
+        ("guarantee", "surety_guarantee"),
+        ("surety", "surety_guarantee"),
+        ("latent defect", "bailment_defects"),
+        ("limitation", "limitation_ousters"),
+        ("whatsapp", "electronic_evidence"),
+        ("cyber security", "cyber_security"),
     ]
     for text_kw, diff_trigger in difficulty_checks:
-        if text_kw in doc_lower and len(bundle_by_id) < 40:
+        if text_kw in doc_lower and len(bundle_by_id) < 65:
             diff_provisions = g.find_difficulty_path(diff_trigger)
-            for dp in diff_provisions[:3]:
+            for dp in diff_provisions[:4]:
                 if dp.jurisdiction in req_jurisdictions and dp.provision_id not in bundle_by_id:
                     ci = ContextItem(
                         id=dp.provision_id,
@@ -314,19 +356,65 @@ def analyze_document(
     context_bundle = list(bundle_by_id.values())
     t_retrieval_ms = max(1, int((time.perf_counter() - t_ret0) * 1000))
 
-    # Stage 3: LLM Risk Analysis (Strict JSON)
+    # Stage 3: LLM Risk Analysis (Strict JSON, chunked for multi-page contracts)
     t_an0 = time.perf_counter()
-    analysis_user_payload = json.dumps(
-        {
-            "doc_name": doc_name or "Submitted Document",
-            "jurisdictions": req_jurisdictions,
-            "clauses": [{"ref": r, "text": b} for r, b in clauses],
-            "document_text": document_text,
-            "context": [model_to_dict(c) for c in context_bundle],
-        },
-        ensure_ascii=False,
-    )
-    raw_analysis = active_llm.main_json(ANALYSIS_SYSTEM_PROMPT, analysis_user_payload)
+    current_date = datetime.now().strftime("%d %B %Y")
+    default_gov_law = "Laws of Bangladesh" if req_jurisdictions == ["BD"] or req_jurisdictions[0] == "BD" else f"{', '.join(req_jurisdictions)} Law"
+    context_dicts = [model_to_dict(c) for c in context_bundle]
+
+    if len(clauses) > 12 or len(document_text) > 9000:
+        # Multi-pass chunked analysis so large contracts never truncate at output token limits
+        batch_size = 8
+        merged_risks: List[Dict[str, Any]] = []
+        seen_keys = set()
+        raw_analysis: Dict[str, Any] = {}
+        header_preview = document_text[:2500]
+        for start in range(0, max(1, len(clauses)), batch_size):
+            batch_clauses = clauses[start : start + batch_size]
+            batch_payload = json.dumps(
+                {
+                    "doc_name": doc_name or "Submitted Document",
+                    "current_date": current_date,
+                    "jurisdictions": req_jurisdictions,
+                    "document_header_and_parties": header_preview,
+                    "clauses": [{"ref": r, "text": b} for r, b in batch_clauses],
+                    "context": context_dicts,
+                },
+                ensure_ascii=False,
+            )
+            batch_resp = active_llm.main_json(ANALYSIS_SYSTEM_PROMPT, batch_payload)
+            if isinstance(batch_resp, dict):
+                if not raw_analysis:
+                    raw_analysis = dict(batch_resp)
+                for key in ("report_title", "summary", "document_type", "governing_law", "parties", "execution_date", "material_terms"):
+                    if not raw_analysis.get(key) and batch_resp.get(key):
+                        raw_analysis[key] = batch_resp[key]
+                batch_risks = batch_resp.get("risks") or batch_resp.get("findings") or batch_resp.get("issues") or []
+                if isinstance(batch_risks, list):
+                    for r_item in batch_risks:
+                        if not isinstance(r_item, dict):
+                            continue
+                        dedup_key = (
+                            str(r_item.get("title") or "").strip().lower(),
+                            tuple(str(c) for c in (r_item.get("clause_refs") or [])),
+                        )
+                        if dedup_key not in seen_keys:
+                            seen_keys.add(dedup_key)
+                            merged_risks.append(r_item)
+        raw_analysis["risks"] = merged_risks
+    else:
+        analysis_user_payload = json.dumps(
+            {
+                "doc_name": doc_name or "Submitted Document",
+                "current_date": current_date,
+                "jurisdictions": req_jurisdictions,
+                "clauses": [{"ref": r, "text": b} for r, b in clauses],
+                "document_text": document_text,
+                "context": context_dicts,
+            },
+            ensure_ascii=False,
+        )
+        raw_analysis = active_llm.main_json(ANALYSIS_SYSTEM_PROMPT, analysis_user_payload)
     t_analysis_ms = max(1, int((time.perf_counter() - t_an0) * 1000))
 
     # Stage 4: Deterministic Graph Citation Verification
@@ -409,16 +497,20 @@ def analyze_document(
     # Stage 5: Markdown Memorandum Synthesis
     t_mem0 = time.perf_counter()
     memo_payload = {
-        "summary": raw_analysis.get("summary", ""),
-        "document_type": raw_analysis.get("document_type", "Commercial Agreement"),
-        "governing_law": raw_analysis.get("governing_law", "Unspecified"),
+        "date": current_date,
+        "client_name": (client_name or "").strip() or "Instructing Party",
+        "doc_name": doc_name or "Submitted Document",
+        "summary": (raw_analysis or {}).get("summary", ""),
+        "document_type": (raw_analysis or {}).get("document_type") or "Commercial Agreement",
+        "governing_law": (raw_analysis or {}).get("governing_law") or default_gov_law,
+        "parties": (raw_analysis or {}).get("parties") or [],
+        "execution_date": (raw_analysis or {}).get("execution_date") or "Not stated",
+        "material_terms": (raw_analysis or {}).get("material_terms") or "",
         "risks": [model_to_dict(r) for r in verified_risks],
         "verification_counts": counts,
         "disallowed_unverified_citations": unverified_strings,
     }
     memo_markdown = active_llm.main_text(MEMO_SYSTEM_PROMPT, json.dumps(memo_payload, ensure_ascii=False))
-    if DISCLAIMER_TEXT not in memo_markdown:
-        memo_markdown = f"{memo_markdown.rstrip()}\n\n---\n\n{DISCLAIMER_TEXT}"
     t_memo_ms = max(1, int((time.perf_counter() - t_mem0) * 1000))
 
     total_ms = int((time.perf_counter() - t_start) * 1000)

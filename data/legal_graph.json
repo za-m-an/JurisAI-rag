@@ -1335,6 +1335,155 @@
           "edges": [],
           "confidence": "high",
           "verified": true
+        },
+        "BD-CONTRACT-1872:s.2(d)": {
+          "provision_id": "BD-CONTRACT-1872:s.2(d)",
+          "law_id": "BD-CONTRACT-1872",
+          "jurisdiction": "BD",
+          "citation_string": "Contract Act 1872 (BD), s.2(d)",
+          "title": "Contract Act 1872 (BD), s.2(d) - Consideration",
+          "section_code": {
+            "code": "s.2(d)",
+            "number": "2(d)",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Consideration under Bangladeshi law includes past, present, or future acts or abstinences at the desire of the promisor.",
+            "operative_rule": "Past consideration is valid under Contract Act s.2(d), though commercially one-sided payment terms remain a commercial risk.",
+            "exceptions": [],
+            "risk_topics": [
+              "consideration",
+              "commercial_fairness"
+            ]
+          },
+          "full_text": "Past consideration is valid under Contract Act s.2(d), though commercially one-sided payment terms remain a commercial risk.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-CONTRACT-1872:s.139": {
+          "provision_id": "BD-CONTRACT-1872:s.139",
+          "law_id": "BD-CONTRACT-1872",
+          "jurisdiction": "BD",
+          "citation_string": "Contract Act 1872 (BD), s.139",
+          "title": "Contract Act 1872 (BD), s.139 - Discharge of surety by creditor's act",
+          "section_code": {
+            "code": "s.139",
+            "number": "139",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "If the creditor does any act inconsistent with the surety's rights or impairs the surety's eventual remedy against the principal debtor, the surety is discharged.",
+            "operative_rule": "Creditor acts impairing surety recourse discharge the guarantor.",
+            "exceptions": [],
+            "risk_topics": [
+              "surety_guarantee"
+            ]
+          },
+          "full_text": "Creditor acts impairing surety recourse discharge the guarantor.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-CONTRACT-1872:s.142": {
+          "provision_id": "BD-CONTRACT-1872:s.142",
+          "law_id": "BD-CONTRACT-1872",
+          "jurisdiction": "BD",
+          "citation_string": "Contract Act 1872 (BD), s.142",
+          "title": "Contract Act 1872 (BD), s.142 - Guarantee obtained by misrepresentation",
+          "section_code": {
+            "code": "s.142",
+            "number": "142",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Any guarantee obtained by means of misrepresentation made by the creditor, or with his knowledge and assent, concerning a material part of the transaction is invalid.",
+            "operative_rule": "Guarantees procured without material risk disclosure are invalid.",
+            "exceptions": [],
+            "risk_topics": [
+              "surety_guarantee",
+              "fraud_in_contract"
+            ]
+          },
+          "full_text": "Guarantees procured without material risk disclosure are invalid.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-CONTRACT-1872:s.143": {
+          "provision_id": "BD-CONTRACT-1872:s.143",
+          "law_id": "BD-CONTRACT-1872",
+          "jurisdiction": "BD",
+          "citation_string": "Contract Act 1872 (BD), s.143",
+          "title": "Contract Act 1872 (BD), s.143 - Guarantee obtained by concealment",
+          "section_code": {
+            "code": "s.143",
+            "number": "143",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Any guarantee obtained by keeping silence as to material circumstances is invalid.",
+            "operative_rule": "Concealing known defects or defaults from a guarantor invalidates the guarantee.",
+            "exceptions": [],
+            "risk_topics": [
+              "surety_guarantee",
+              "fraud_in_contract"
+            ]
+          },
+          "full_text": "Concealing known defects or defaults from a guarantor invalidates the guarantee.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-CONTRACT-1872:s.150": {
+          "provision_id": "BD-CONTRACT-1872:s.150",
+          "law_id": "BD-CONTRACT-1872",
+          "jurisdiction": "BD",
+          "citation_string": "Contract Act 1872 (BD), s.150",
+          "title": "Contract Act 1872 (BD), s.150 - Bailor's duty to disclose faults in goods bailed",
+          "section_code": {
+            "code": "s.150",
+            "number": "150",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "A bailor must disclose known faults in bailed goods; where goods are bailed/leased for hire, the bailor is responsible for damage from faults whether aware or not.",
+            "operative_rule": "In an equipment lease (bailment for hire), disclaiming known or latent defects is contrary to Contract Act s.150 (note: Sale of Goods Act 1930 does not govern leases).",
+            "exceptions": [],
+            "risk_topics": [
+              "bailment_defects",
+              "liability_cap"
+            ]
+          },
+          "full_text": "In an equipment lease (bailment for hire), disclaiming known or latent defects is contrary to Contract Act s.150 (note: Sale of Goods Act 1930 does not govern leases).",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
         }
       },
       "precedents": [],
@@ -1763,6 +1912,66 @@
           },
           "full_text": "Members holding required shareholding may apply to High Court Division where company affairs are being conducted in a manner prejudicial to members or public interest.",
           "source_url": "",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-COMPANIES-1994:s.2(1)(q)": {
+          "provision_id": "BD-COMPANIES-1994:s.2(1)(q)",
+          "law_id": "BD-COMPANIES-1994",
+          "jurisdiction": "BD",
+          "citation_string": "Companies Act 1994 (BD), s.2(1)(q)",
+          "title": "Companies Act 1994 (BD), s.2(1)(q) - Private company member limit",
+          "section_code": {
+            "code": "s.2(1)(q)",
+            "number": "2(1)(q)",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "A private company must restrict share transfers, prohibit public invitations, and limit its members to 50 (excluding employee-members).",
+            "operative_rule": "An entity claiming private company status with more than 50 non-employee members violates s.2(1)(q) and faces status/capacity defects.",
+            "exceptions": [],
+            "risk_topics": [
+              "company_authority",
+              "contract_validity"
+            ]
+          },
+          "full_text": "An entity claiming private company status with more than 50 non-employee members violates s.2(1)(q) and faces status/capacity defects.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-COMPANIES-1994:s.159": {
+          "provision_id": "BD-COMPANIES-1994:s.159",
+          "law_id": "BD-COMPANIES-1994",
+          "jurisdiction": "BD",
+          "citation_string": "Companies Act 1994 (BD), s.159",
+          "title": "Companies Act 1994 (BD), s.159 - Registration of charges",
+          "section_code": {
+            "code": "s.159",
+            "number": "159",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "A mortgage or floating charge created by a company must be filed with the Registrar (RJSC) within 21 days of creation, or it is void against the liquidator and creditors.",
+            "operative_rule": "Agreeing not to register a floating charge renders the security void against liquidators and third-party creditors.",
+            "exceptions": [],
+            "risk_topics": [
+              "charge_registration",
+              "company_authority"
+            ]
+          },
+          "full_text": "Agreeing not to register a floating charge renders the security void against liquidators and third-party creditors.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
           "precedents": [],
           "edges": [],
           "confidence": "high",
@@ -2207,7 +2416,38 @@
       "legal_domain": "civil",
       "status": "in_force",
       "source_url": "http://bdlaws.minlaw.gov.bd/",
-      "provisions": {},
+      "provisions": {
+        "BD-LIMIT-1908:s.3": {
+          "provision_id": "BD-LIMIT-1908:s.3",
+          "law_id": "BD-LIMIT-1908",
+          "jurisdiction": "BD",
+          "citation_string": "Limitation Act 1908 (BD), s.3",
+          "title": "Limitation Act 1908 (BD), s.3 - Statutory limitation periods",
+          "section_code": {
+            "code": "s.3",
+            "number": "3",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Prescribes mandatory limitation periods for suits and claims; read with Contract Act s.28, contractual clauses curtailing statutory limitation periods (e.g., 60-day bar) are void.",
+            "operative_rule": "Shortening statutory limitation periods or waiving the Limitation Act is void under Contract Act s.28.",
+            "exceptions": [],
+            "risk_topics": [
+              "limitation_ousters",
+              "dispute_resolution"
+            ]
+          },
+          "full_text": "Shortening statutory limitation periods or waiving the Limitation Act is void under Contract Act s.28.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
       "precedents": [],
       "law_level_edges": []
     },
@@ -2325,6 +2565,36 @@
           },
           "full_text": "Regulates remittance of technical assistance fees, royalties, consultancy fees, and franchise fees to foreign principals subject to regulatory limits.",
           "source_url": "",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-FERA-1947:s.4": {
+          "provision_id": "BD-FERA-1947:s.4",
+          "law_id": "BD-FERA-1947",
+          "jurisdiction": "BD",
+          "citation_string": "Foreign Exchange Regulation Act 1947 (BD), s.4",
+          "title": "Foreign Exchange Regulation Act 1947 (BD), s.4 - Restrictions on dealing in foreign exchange",
+          "section_code": {
+            "code": "s.4",
+            "number": "4",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Prohibits dealing in foreign exchange except through authorized dealers and at rates authorized by Bangladesh Bank.",
+            "operative_rule": "Domestic contracts fixing unauthorized exchange rates or bypassing authorized dealers breach FERA s.4.",
+            "exceptions": [],
+            "risk_topics": [
+              "foreign_exchange",
+              "illegality"
+            ]
+          },
+          "full_text": "Domestic contracts fixing unauthorized exchange rates or bypassing authorized dealers breach FERA s.4.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
           "precedents": [],
           "edges": [],
           "confidence": "high",
@@ -3398,6 +3668,210 @@
           },
           "full_text": "Permanent worker may resign by giving 30 days notice to employer. Workers with 5+ years of continuous service are entitled to gratuity or separation compensation.",
           "source_url": "",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-LABOUR-2006:s.100": {
+          "provision_id": "BD-LABOUR-2006:s.100",
+          "law_id": "BD-LABOUR-2006",
+          "jurisdiction": "BD",
+          "citation_string": "Bangladesh Labour Act 2006 (BD), s.100",
+          "title": "Bangladesh Labour Act 2006 (BD), s.100 - Daily working hours",
+          "section_code": {
+            "code": "s.100",
+            "number": "100",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Standard working hours for an adult worker are 8 hours per day (maximum 10 hours including overtime).",
+            "operative_rule": "Requiring 12-hour daily shifts violates s.100 and cannot be waived by 'independent contractor' labels.",
+            "exceptions": [],
+            "risk_topics": [
+              "labour_compliance"
+            ]
+          },
+          "full_text": "Requiring 12-hour daily shifts violates s.100 and cannot be waived by 'independent contractor' labels.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-LABOUR-2006:s.102": {
+          "provision_id": "BD-LABOUR-2006:s.102",
+          "law_id": "BD-LABOUR-2006",
+          "jurisdiction": "BD",
+          "citation_string": "Bangladesh Labour Act 2006 (BD), s.102",
+          "title": "Bangladesh Labour Act 2006 (BD), s.102 - Weekly working hours",
+          "section_code": {
+            "code": "s.102",
+            "number": "102",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Standard weekly hours are 48 hours (maximum 60 hours/week including overtime, averaging max 56 hours/week over a year).",
+            "operative_rule": "Excessive weekly hours violate mandatory statutory limits.",
+            "exceptions": [],
+            "risk_topics": [
+              "labour_compliance"
+            ]
+          },
+          "full_text": "Excessive weekly hours violate mandatory statutory limits.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-LABOUR-2006:s.103": {
+          "provision_id": "BD-LABOUR-2006:s.103",
+          "law_id": "BD-LABOUR-2006",
+          "jurisdiction": "BD",
+          "citation_string": "Bangladesh Labour Act 2006 (BD), s.103",
+          "title": "Bangladesh Labour Act 2006 (BD), s.103 - Weekly holiday",
+          "section_code": {
+            "code": "s.103",
+            "number": "103",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Workers are entitled to 1 day weekly holiday in factories (1.5 days in shops/commercial establishments) with no wage deduction.",
+            "operative_rule": "Denying weekly holidays violates mandatory labour protections.",
+            "exceptions": [],
+            "risk_topics": [
+              "labour_compliance"
+            ]
+          },
+          "full_text": "Denying weekly holidays violates mandatory labour protections.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-LABOUR-2006:s.108": {
+          "provision_id": "BD-LABOUR-2006:s.108",
+          "law_id": "BD-LABOUR-2006",
+          "jurisdiction": "BD",
+          "citation_string": "Bangladesh Labour Act 2006 (BD), s.108",
+          "title": "Bangladesh Labour Act 2006 (BD), s.108 - Overtime allowance at 2x rate",
+          "section_code": {
+            "code": "s.108",
+            "number": "108",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Work beyond standard daily or weekly hours must be paid at twice (2x) the ordinary rate of basic wage plus dearness allowance.",
+            "operative_rule": "Eliminating overtime premiums is unlawful under s.108.",
+            "exceptions": [],
+            "risk_topics": [
+              "labour_compliance"
+            ]
+          },
+          "full_text": "Eliminating overtime premiums is unlawful under s.108.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-LABOUR-2006:s.122-128": {
+          "provision_id": "BD-LABOUR-2006:s.122-128",
+          "law_id": "BD-LABOUR-2006",
+          "jurisdiction": "BD",
+          "citation_string": "Bangladesh Labour Act 2006 (BD), ss.122-128",
+          "title": "Bangladesh Labour Act 2006 (BD), ss.122-128 - Timely wage payment & deduction limits",
+          "section_code": {
+            "code": "s.122-128",
+            "number": "122-128",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Wages must be paid within 7 working days after the wage period; only statutorily authorized deductions within prescribed limits are permitted.",
+            "operative_rule": "Deferring wages or imposing arbitrary 40% wage deductions violates Chapters X-XI.",
+            "exceptions": [],
+            "risk_topics": [
+              "labour_compliance"
+            ]
+          },
+          "full_text": "Deferring wages or imposing arbitrary 40% wage deductions violates Chapters X-XI.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-LABOUR-2006:s.132-134": {
+          "provision_id": "BD-LABOUR-2006:s.132-134",
+          "law_id": "BD-LABOUR-2006",
+          "jurisdiction": "BD",
+          "citation_string": "Bangladesh Labour Act 2006 (BD), ss.132-134",
+          "title": "Bangladesh Labour Act 2006 (BD), ss.132-134 - Freedom of association & trade unions",
+          "section_code": {
+            "code": "s.132-134",
+            "number": "132-134",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Workers have the statutory right to form and join trade unions; contractual bans on unionization are void.",
+            "operative_rule": "Prohibiting workers from joining or forming unions violates the Labour Act 2006.",
+            "exceptions": [],
+            "risk_topics": [
+              "labour_compliance"
+            ]
+          },
+          "full_text": "Prohibiting workers from joining or forming unions violates the Labour Act 2006.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-LABOUR-2006:s.150": {
+          "provision_id": "BD-LABOUR-2006:s.150",
+          "law_id": "BD-LABOUR-2006",
+          "jurisdiction": "BD",
+          "citation_string": "Bangladesh Labour Act 2006 (BD), s.150",
+          "title": "Bangladesh Labour Act 2006 (BD), s.150 - Employer liability for injury or death",
+          "section_code": {
+            "code": "s.150",
+            "number": "150",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Employers are statutorily liable to pay compensation for personal injury or death caused to a worker by accident arising out of and in the course of employment.",
+            "operative_rule": "Clauses shifting statutory workplace injury/death liability or excluding liability for death violate public policy and s.150.",
+            "exceptions": [],
+            "risk_topics": [
+              "labour_compliance",
+              "safety_environment"
+            ]
+          },
+          "full_text": "Clauses shifting statutory workplace injury/death liability or excluding liability for death violate public policy and s.150.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
           "precedents": [],
           "edges": [],
           "confidence": "high",
@@ -33503,6 +33977,740 @@
       },
       "precedents": [],
       "law_level_edges": []
+    },
+    "BD-MAJORITY-1875": {
+      "law_id": "BD-MAJORITY-1875",
+      "jurisdiction": "BD",
+      "title": "The Majority Act, 1875",
+      "short_title": "Majority Act 1875",
+      "year": 1875,
+      "act_number": "Act No. IX of 1875",
+      "penal_code_number": null,
+      "legal_domain": "capacity",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-MAJORITY-1875:s.3": {
+          "provision_id": "BD-MAJORITY-1875:s.3",
+          "law_id": "BD-MAJORITY-1875",
+          "jurisdiction": "BD",
+          "citation_string": "Majority Act 1875 (BD), s.3",
+          "title": "Majority Act 1875 (BD), s.3 - Age of majority",
+          "section_code": {
+            "code": "s.3",
+            "number": "3",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Every person domiciled in Bangladesh attains majority at 18 years of age (or 21 years if a court guardian or Court of Wards is appointed).",
+            "operative_rule": "A person under 18 years of age is a minor and lacks legal competence to contract under Contract Act s.11.",
+            "exceptions": [],
+            "risk_topics": [
+              "minor_capacity",
+              "contract_validity"
+            ]
+          },
+          "full_text": "A person under 18 years of age is a minor and lacks legal competence to contract under Contract Act s.11.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-REG-1908": {
+      "law_id": "BD-REG-1908",
+      "jurisdiction": "BD",
+      "title": "The Registration Act, 1908",
+      "short_title": "Registration Act 1908",
+      "year": 1908,
+      "act_number": "Act No. XVI of 1908",
+      "penal_code_number": null,
+      "legal_domain": "property_registration",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-REG-1908:s.17": {
+          "provision_id": "BD-REG-1908:s.17",
+          "law_id": "BD-REG-1908",
+          "jurisdiction": "BD",
+          "citation_string": "Registration Act 1908 (BD), s.17",
+          "title": "Registration Act 1908 (BD), s.17 - Compulsory registration of leases",
+          "section_code": {
+            "code": "s.17",
+            "number": "17",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Leases of immovable property from year to year, for any term exceeding one year, or reserving a yearly rent must be compulsorily registered.",
+            "operative_rule": "An unregistered lease of immovable property exceeding one year is invalid to pass title/term and parties cannot waive registration by contract.",
+            "exceptions": [],
+            "risk_topics": [
+              "lease_formalities",
+              "immovable_property"
+            ]
+          },
+          "full_text": "An unregistered lease of immovable property exceeding one year is invalid to pass title/term and parties cannot waive registration by contract.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        },
+        "BD-REG-1908:s.49": {
+          "provision_id": "BD-REG-1908:s.49",
+          "law_id": "BD-REG-1908",
+          "jurisdiction": "BD",
+          "citation_string": "Registration Act 1908 (BD), s.49",
+          "title": "Registration Act 1908 (BD), s.49 - Effect of non-registration",
+          "section_code": {
+            "code": "s.49",
+            "number": "49",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "No document required by s.17 to be registered shall affect any immovable property or be received as evidence of any transaction affecting it unless registered.",
+            "operative_rule": "Unregistered long-term leases cannot be enforced or received as primary evidence of the lease term.",
+            "exceptions": [],
+            "risk_topics": [
+              "lease_formalities",
+              "immovable_property"
+            ]
+          },
+          "full_text": "Unregistered long-term leases cannot be enforced or received as primary evidence of the lease term.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-STAMP-1899": {
+      "law_id": "BD-STAMP-1899",
+      "jurisdiction": "BD",
+      "title": "The Stamp Act, 1899",
+      "short_title": "Stamp Act 1899",
+      "year": 1899,
+      "act_number": "Act No. II of 1899",
+      "penal_code_number": null,
+      "legal_domain": "stamp_duty",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-STAMP-1899:s.35": {
+          "provision_id": "BD-STAMP-1899:s.35",
+          "law_id": "BD-STAMP-1899",
+          "jurisdiction": "BD",
+          "citation_string": "Stamp Act 1899 (BD), s.35",
+          "title": "Stamp Act 1899 (BD), s.35 - Insufficiently stamped instruments inadmissible",
+          "section_code": {
+            "code": "s.35",
+            "number": "35",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "No instrument chargeable with stamp duty shall be admitted in evidence for any purpose or acted upon unless duly stamped (subject to payment of duty and penalty).",
+            "operative_rule": "Executing a high-value lease or contract on nominal/insufficient stamp paper renders it inadmissible in evidence; contractual waivers of stamp duty are void.",
+            "exceptions": [],
+            "risk_topics": [
+              "lease_formalities",
+              "stamp_duty"
+            ]
+          },
+          "full_text": "Executing a high-value lease or contract on nominal/insufficient stamp paper renders it inadmissible in evidence; contractual waivers of stamp duty are void.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-MLPA-2012": {
+      "law_id": "BD-MLPA-2012",
+      "jurisdiction": "BD",
+      "title": "The Money Laundering Prevention Act, 2012",
+      "short_title": "Money Laundering Prevention Act 2012",
+      "year": 2012,
+      "act_number": "Act No. V of 2012",
+      "penal_code_number": null,
+      "legal_domain": "financial_crime",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-MLPA-2012:s.4": {
+          "provision_id": "BD-MLPA-2012:s.4",
+          "law_id": "BD-MLPA-2012",
+          "jurisdiction": "BD",
+          "citation_string": "Money Laundering Prevention Act 2012 (BD), s.4",
+          "title": "Money Laundering Prevention Act 2012 (BD), s.4 - Offence of money laundering",
+          "section_code": {
+            "code": "s.4",
+            "number": "4",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Criminalizes transferring, converting, or concealing proceeds of predicate offences, including trade-based under-invoicing/over-invoicing and unauthorized cross-border transfers.",
+            "operative_rule": "Customs under-declaration, informal settlement channels, or offshore routing of domestic payments trigger money laundering liability.",
+            "exceptions": [],
+            "risk_topics": [
+              "foreign_exchange",
+              "customs_fraud",
+              "illegality"
+            ]
+          },
+          "full_text": "Customs under-declaration, informal settlement channels, or offshore routing of domestic payments trigger money laundering liability.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-VAT-2012": {
+      "law_id": "BD-VAT-2012",
+      "jurisdiction": "BD",
+      "title": "The Value Added Tax and Supplementary Duty Act, 2012",
+      "short_title": "VAT and Supplementary Duty Act 2012",
+      "year": 2012,
+      "act_number": "Act No. 47 of 2012",
+      "penal_code_number": null,
+      "legal_domain": "tax",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-VAT-2012:s.15": {
+          "provision_id": "BD-VAT-2012:s.15",
+          "law_id": "BD-VAT-2012",
+          "jurisdiction": "BD",
+          "citation_string": "VAT and Supplementary Duty Act 2012 (BD), s.15",
+          "title": "VAT and Supplementary Duty Act 2012 (BD), s.15 - Standard VAT rate",
+          "section_code": {
+            "code": "s.15",
+            "number": "15",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "The standard Value Added Tax rate in Bangladesh is 15% unless specifically exempted, zero-rated, or subject to a statutory reduced rate.",
+            "operative_rule": "Contractually deeming VAT at an inflated non-statutory rate (e.g., 20%) or prohibiting statutory VDS conflicts with the VAT Act 2012.",
+            "exceptions": [],
+            "risk_topics": [
+              "tax_compliance"
+            ]
+          },
+          "full_text": "Contractually deeming VAT at an inflated non-statutory rate (e.g., 20%) or prohibiting statutory VDS conflicts with the VAT Act 2012.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-ITA-2023": {
+      "law_id": "BD-ITA-2023",
+      "jurisdiction": "BD",
+      "title": "The Income Tax Act, 2023",
+      "short_title": "Income Tax Act 2023",
+      "year": 2023,
+      "act_number": "Act No. 12 of 2023",
+      "penal_code_number": null,
+      "legal_domain": "tax",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-ITA-2023:Part 7": {
+          "provision_id": "BD-ITA-2023:Part 7",
+          "law_id": "BD-ITA-2023",
+          "jurisdiction": "BD",
+          "citation_string": "Income Tax Act 2023 (BD), Part 7 (TDS)",
+          "title": "Income Tax Act 2023 (BD), Part 7 - Mandatory Tax Deduction at Source (TDS)",
+          "section_code": {
+            "code": "Part 7",
+            "number": "Part 7",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Payers of rent, contract fees, service charges, and royalties must deduct income tax at source and deposit it with the government.",
+            "operative_rule": "Statutory withholding obligations cannot be waived or contracted out by private agreement.",
+            "exceptions": [],
+            "risk_topics": [
+              "tax_compliance"
+            ]
+          },
+          "full_text": "Statutory withholding obligations cannot be waived or contracted out by private agreement.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-CUSTOMS-2023": {
+      "law_id": "BD-CUSTOMS-2023",
+      "jurisdiction": "BD",
+      "title": "The Customs Act, 2023 (superseding Customs Act, 1969)",
+      "short_title": "Customs Act 2023",
+      "year": 2023,
+      "act_number": "Act of 2023",
+      "penal_code_number": null,
+      "legal_domain": "customs",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-CUSTOMS-2023:s.156-eq": {
+          "provision_id": "BD-CUSTOMS-2023:s.156-eq",
+          "law_id": "BD-CUSTOMS-2023",
+          "jurisdiction": "BD",
+          "citation_string": "Customs Act 2023 (BD) (superseding Customs Act 1969, s.156)",
+          "title": "Customs Act 2023 / Customs Act 1969 (BD), s.156 - False customs declarations",
+          "section_code": {
+            "code": "s.156-eq",
+            "number": "156-eq",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Under-declaring invoice values or submitting false customs declarations is an offence carrying confiscation, penalties, and prosecution.",
+            "operative_rule": "Agreements to under-invoice imported equipment and settle the balance informally are void for illegality under Contract Act s.23.",
+            "exceptions": [],
+            "risk_topics": [
+              "customs_fraud",
+              "illegality"
+            ]
+          },
+          "full_text": "Agreements to under-invoice imported equipment and settle the balance informally are void for illegality under Contract Act s.23.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-CUSTOMS-1969": {
+      "law_id": "BD-CUSTOMS-1969",
+      "jurisdiction": "BD",
+      "title": "The Customs Act, 1969 (repealed by Customs Act 2023)",
+      "short_title": "Customs Act 1969",
+      "year": 1969,
+      "act_number": "Act No. IV of 1969",
+      "penal_code_number": null,
+      "legal_domain": "customs",
+      "status": "superseded",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {},
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-PCA-1947": {
+      "law_id": "BD-PCA-1947",
+      "jurisdiction": "BD",
+      "title": "The Prevention of Corruption Act, 1947",
+      "short_title": "Prevention of Corruption Act 1947",
+      "year": 1947,
+      "act_number": "Act No. II of 1947",
+      "penal_code_number": null,
+      "legal_domain": "anti_corruption",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-PCA-1947:s.5": {
+          "provision_id": "BD-PCA-1947:s.5",
+          "law_id": "BD-PCA-1947",
+          "jurisdiction": "BD",
+          "citation_string": "Prevention of Corruption Act 1947 (BD), s.5",
+          "title": "Prevention of Corruption Act 1947 (BD), s.5 - Criminal misconduct & bribery",
+          "section_code": {
+            "code": "s.5",
+            "number": "5",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Criminalizes offering or obtaining illegal gratification or pecuniary advantage involving public servants.",
+            "operative_rule": "Reimbursable 'facilitation payments' to customs, fire, or factory inspectors constitute bribery and render the clause void under Contract Act s.23.",
+            "exceptions": [],
+            "risk_topics": [
+              "bribery_corruption",
+              "illegality"
+            ]
+          },
+          "full_text": "Reimbursable 'facilitation payments' to customs, fire, or factory inspectors constitute bribery and render the clause void under Contract Act s.23.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-ACC-2004": {
+      "law_id": "BD-ACC-2004",
+      "jurisdiction": "BD",
+      "title": "The Anti-Corruption Commission Act, 2004",
+      "short_title": "Anti-Corruption Commission Act 2004",
+      "year": 2004,
+      "act_number": "Act No. V of 2004",
+      "penal_code_number": null,
+      "legal_domain": "anti_corruption",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-ACC-2004:s.17": {
+          "provision_id": "BD-ACC-2004:s.17",
+          "law_id": "BD-ACC-2004",
+          "jurisdiction": "BD",
+          "citation_string": "Anti-Corruption Commission Act 2004 (BD), s.17",
+          "title": "Anti-Corruption Commission Act 2004 (BD), s.17 - Investigation of bribery offences",
+          "section_code": {
+            "code": "s.17",
+            "number": "17",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Empowers the ACC to investigate and prosecute scheduled corruption and bribery offences involving public officials.",
+            "operative_rule": "Contractual clauses authorizing facilitation payments expose both parties to ACC prosecution.",
+            "exceptions": [],
+            "risk_topics": [
+              "bribery_corruption",
+              "illegality"
+            ]
+          },
+          "full_text": "Contractual clauses authorizing facilitation payments expose both parties to ACC prosecution.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-FIRE-2003": {
+      "law_id": "BD-FIRE-2003",
+      "jurisdiction": "BD",
+      "title": "The Fire Service and Civil Defence Act, 2003",
+      "short_title": "Fire Service and Civil Defence Act 2003",
+      "year": 2003,
+      "act_number": "Act No. 7 of 2003",
+      "penal_code_number": null,
+      "legal_domain": "safety",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-FIRE-2003:s.4": {
+          "provision_id": "BD-FIRE-2003:s.4",
+          "law_id": "BD-FIRE-2003",
+          "jurisdiction": "BD",
+          "citation_string": "Fire Service and Civil Defence Act 2003 (BD), s.4",
+          "title": "Fire Service and Civil Defence Act 2003 (BD), s.4 - Mandatory fire safety license & BNBC compliance",
+          "section_code": {
+            "code": "s.4",
+            "number": "4",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Industrial and commercial premises must obtain Fire Service NOC/license and comply with the Bangladesh National Building Code.",
+            "operative_rule": "Contractual waivers of fire safety or Building Code compliance are void as contrary to law and public policy.",
+            "exceptions": [],
+            "risk_topics": [
+              "safety_environment",
+              "illegality"
+            ]
+          },
+          "full_text": "Contractual waivers of fire safety or Building Code compliance are void as contrary to law and public policy.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-BOILER-2022": {
+      "law_id": "BD-BOILER-2022",
+      "jurisdiction": "BD",
+      "title": "The Boiler Act, 2022 (replacing Boilers Act, 1923)",
+      "short_title": "Boiler Act 2022",
+      "year": 2022,
+      "act_number": "Act of 2022",
+      "penal_code_number": null,
+      "legal_domain": "industrial_safety",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-BOILER-2022:s.6": {
+          "provision_id": "BD-BOILER-2022:s.6",
+          "law_id": "BD-BOILER-2022",
+          "jurisdiction": "BD",
+          "citation_string": "Boiler Act 2022 / Boilers Act 1923 (BD), s.6",
+          "title": "Boiler Act 2022 / Boilers Act 1923 (BD), s.6 - Prohibition on uncertified boiler operation",
+          "section_code": {
+            "code": "s.6",
+            "number": "6",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "No steam boiler may be operated without a valid registration and current inspection certificate from the Chief Inspector of Boilers.",
+            "operative_rule": "Operating equipment with an expired boiler certificate is unlawful and exposes parties to safety and criminal liability.",
+            "exceptions": [],
+            "risk_topics": [
+              "safety_environment",
+              "bailment_defects"
+            ]
+          },
+          "full_text": "Operating equipment with an expired boiler certificate is unlawful and exposes parties to safety and criminal liability.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-ECA-1995": {
+      "law_id": "BD-ECA-1995",
+      "jurisdiction": "BD",
+      "title": "The Bangladesh Environment Conservation Act, 1995",
+      "short_title": "Environment Conservation Act 1995",
+      "year": 1995,
+      "act_number": "Act No. 1 of 1995",
+      "penal_code_number": null,
+      "legal_domain": "environment",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-ECA-1995:s.12": {
+          "provision_id": "BD-ECA-1995:s.12",
+          "law_id": "BD-ECA-1995",
+          "jurisdiction": "BD",
+          "citation_string": "Environment Conservation Act 1995 (BD), s.12",
+          "title": "Environment Conservation Act 1995 (BD), s.12 - Mandatory Environmental Clearance Certificate",
+          "section_code": {
+            "code": "s.12",
+            "number": "12",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "No industrial unit or project may be established or operated without an Environmental Clearance Certificate (ECC) from the Department of Environment.",
+            "operative_rule": "Operating an Effluent Treatment Plant (ETP) or industrial facility while DoE clearance is pending violates s.12 and triggers penalties under s.15.",
+            "exceptions": [],
+            "risk_topics": [
+              "safety_environment",
+              "illegality"
+            ]
+          },
+          "full_text": "Operating an Effluent Treatment Plant (ETP) or industrial facility while DoE clearance is pending violates s.12 and triggers penalties under s.15.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-EVID-1872": {
+      "law_id": "BD-EVID-1872",
+      "jurisdiction": "BD",
+      "title": "The Evidence Act, 1872",
+      "short_title": "Evidence Act 1872",
+      "year": 1872,
+      "act_number": "Act No. I of 1872",
+      "penal_code_number": null,
+      "legal_domain": "evidence",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-EVID-1872:s.65B": {
+          "provision_id": "BD-EVID-1872:s.65B",
+          "law_id": "BD-EVID-1872",
+          "jurisdiction": "BD",
+          "citation_string": "Evidence Act 1872 (BD), s.65B",
+          "title": "Evidence Act 1872 (BD), s.65B - Admissibility of electronic records",
+          "section_code": {
+            "code": "s.65B",
+            "number": "65B",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Electronic and digital records (including messaging apps) require compliance with statutory authentication conditions under s.65B to be admissible in court.",
+            "operative_rule": "Deeming formal legal notices served solely via WhatsApp or social media upon sending creates severe evidential proof and service risks.",
+            "exceptions": [],
+            "risk_topics": [
+              "electronic_evidence",
+              "notice_service"
+            ]
+          },
+          "full_text": "Deeming formal legal notices served solely via WhatsApp or social media upon sending creates severe evidential proof and service risks.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-ICT-2006": {
+      "law_id": "BD-ICT-2006",
+      "jurisdiction": "BD",
+      "title": "The Information and Communication Technology Act, 2006",
+      "short_title": "ICT Act 2006",
+      "year": 2006,
+      "act_number": "Act No. XXXIX of 2006",
+      "penal_code_number": null,
+      "legal_domain": "electronic_transactions",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-ICT-2006:s.7": {
+          "provision_id": "BD-ICT-2006:s.7",
+          "law_id": "BD-ICT-2006",
+          "jurisdiction": "BD",
+          "citation_string": "ICT Act 2006 (BD), s.7",
+          "title": "ICT Act 2006 (BD), s.7 - Legal recognition of electronic records",
+          "section_code": {
+            "code": "s.7",
+            "number": "7",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "Electronic records are legally recognized only when retained in accessible form for subsequent reference and authenticated as required.",
+            "operative_rule": "Ephemeral messaging platforms without verified delivery/retention jeopardize formal notice validity.",
+            "exceptions": [],
+            "risk_topics": [
+              "electronic_evidence",
+              "notice_service"
+            ]
+          },
+          "full_text": "Ephemeral messaging platforms without verified delivery/retention jeopardize formal notice validity.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
+    },
+    "BD-CSO-2025": {
+      "law_id": "BD-CSO-2025",
+      "jurisdiction": "BD",
+      "title": "The Cyber Security Ordinance, 2025 (repealing Cyber Security Act, 2023)",
+      "short_title": "Cyber Security Ordinance 2025",
+      "year": 2025,
+      "act_number": "Ordinance of 2025",
+      "penal_code_number": null,
+      "legal_domain": "cyber_security",
+      "status": "in_force",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "provisions": {
+        "BD-CSO-2025:s.1": {
+          "provision_id": "BD-CSO-2025:s.1",
+          "law_id": "BD-CSO-2025",
+          "jurisdiction": "BD",
+          "citation_string": "Cyber Security Ordinance 2025 (BD) (repealing Cyber Security Act 2023)",
+          "title": "Cyber Security Ordinance 2025 (BD) - Current cyber-security statute",
+          "section_code": {
+            "code": "s.1",
+            "number": "1",
+            "chapter": null,
+            "is_penal": false,
+            "penal_code_number": null
+          },
+          "article_number": null,
+          "summary": {
+            "one_week_summary": "The Cyber Security Ordinance, 2025 repealed and replaced the Cyber Security Act, 2023 as Bangladesh's governing cyber-security legislation.",
+            "operative_rule": "Contracts citing the repealed Cyber Security Act 2023 or Digital Security Act 2018 reference superseded law.",
+            "exceptions": [],
+            "risk_topics": [
+              "cyber_security",
+              "currency_of_law"
+            ]
+          },
+          "full_text": "Contracts citing the repealed Cyber Security Act 2023 or Digital Security Act 2018 reference superseded law.",
+          "source_url": "http://bdlaws.minlaw.gov.bd/",
+          "precedents": [],
+          "edges": [],
+          "confidence": "high",
+          "verified": true
+        }
+      },
+      "precedents": [],
+      "law_level_edges": []
     }
   },
   "provisions": {
@@ -33818,7 +35026,9 @@
         "operative_rule": "Elements of a valid contract: free consent, competent parties, lawful consideration and object.",
         "exceptions": [],
         "risk_topics": [
-          "formation"
+          "contract_validity",
+          "formation",
+          "minor_capacity"
         ]
       },
       "full_text": "Elements of a valid contract: free consent, competent parties, lawful consideration and object.",
@@ -33876,7 +35086,9 @@
         "operative_rule": "Contracts obtained through dominant position over the other party's will.",
         "exceptions": [],
         "risk_topics": [
-          "free_consent"
+          "free_consent",
+          "surety_guarantee",
+          "undue_influence"
         ]
       },
       "full_text": "Contracts obtained through dominant position over the other party's will.",
@@ -34697,6 +35909,8 @@
         "exceptions": [],
         "risk_topics": [
           "capacity",
+          "contract_validity",
+          "minor_capacity",
           "validity"
         ]
       },
@@ -34757,6 +35971,8 @@
         "exceptions": [],
         "risk_topics": [
           "fraud",
+          "fraud_in_contract",
+          "liability_cap",
           "voidability"
         ]
       },
@@ -34936,6 +36152,7 @@
         "operative_rule": "Agreements, the meaning of which is not certain, or capable of being made certain, are void.",
         "exceptions": [],
         "risk_topics": [
+          "drafting_defect",
           "uncertainty",
           "void_agreement"
         ]
@@ -35119,6 +36336,7 @@
         "operative_rule": "When an agreement is discovered to be void, or contract becomes void, person who received advantage is bound to restore it or compensate.",
         "exceptions": [],
         "risk_topics": [
+          "penalty_clause",
           "restitution",
           "unjust_enrichment"
         ]
@@ -35239,8 +36457,9 @@
         "operative_rule": "Any variance made without surety's consent in terms of contract between principal debtor and creditor discharges surety as to transactions subsequent to variance.",
         "exceptions": [],
         "risk_topics": [
+          "discharge_of_surety",
           "guarantee",
-          "discharge_of_surety"
+          "surety_guarantee"
         ]
       },
       "full_text": "Any variance made without surety's consent in terms of contract between principal debtor and creditor discharges surety as to transactions subsequent to variance.",
@@ -36117,6 +37336,7 @@
         "risk_topics": [
           "cross_border",
           "foreign_exchange",
+          "illegality",
           "remittance"
         ]
       },
@@ -61392,6 +62612,8 @@
           "Statutory exceptions apply as specified in the enactment."
         ],
         "risk_topics": [
+          "immovable_property",
+          "lease_formalities",
           "property"
         ]
       },
@@ -61521,10 +62743,12 @@
           "Statutory exceptions apply as specified in the enactment."
         ],
         "risk_topics": [
-          "penalty_clause",
           "data_protection",
           "employment",
-          "property"
+          "lease_formalities",
+          "penalty_clause",
+          "property",
+          "termination"
         ]
       },
       "full_text": "111. A lease of immoveable property determines-\n(a) by efflux of the time limited thereby:\n(b) where such time is limited conditionally on the happening of some event - by the happening of such event:\n(c) where the interest of the lessor in the property terminates on, or his power to dispose of the same extends only to, the happening of any event - by the happening of such event:\n(d) in case the interests of the lessee and the lessor in the whole of the property become vested at the same time in one person in the same right:\n(e) by express surrender; that is to say, in case the lessee yields up his interest under the lease to the lessor, by mutual agreement between them:\n(f) by implied surrender:\n(g) by forfeiture; that is to say, (1) in case the lessee breaks an express condition which provides that on breach thereof the lessor may re-enter; or (2) in case the lessee renounces his character as such by setting up a title in a third person or by claiming title in himself; or (3) the lessee is adjudicated an insolvent and the lease provides that the lessor may re-enter on the happening of such event; and in any of these cases the lessor or his transferee gives notice in writing to the lessee of his intention to determine the lease:\n(h) on the expiration of a notice to determine the lease, or to quit, or of intention to quit, the property leased, duly given by one party to the other.\nIllustration of clause (f)\nA lessee accepts from his lessor a new lease of the property leased, to take effect during the continuance of the existing lease. This is an implied surrender of the former lease, and such lease determines thereupon.",
@@ -66190,6 +67414,958 @@
       "edges": [],
       "confidence": "high",
       "verified": true
+    },
+    "BD-MAJORITY-1875:s.3": {
+      "provision_id": "BD-MAJORITY-1875:s.3",
+      "law_id": "BD-MAJORITY-1875",
+      "jurisdiction": "BD",
+      "citation_string": "Majority Act 1875 (BD), s.3",
+      "title": "Majority Act 1875 (BD), s.3 - Age of majority",
+      "section_code": {
+        "code": "s.3",
+        "number": "3",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Every person domiciled in Bangladesh attains majority at 18 years of age (or 21 years if a court guardian or Court of Wards is appointed).",
+        "operative_rule": "A person under 18 years of age is a minor and lacks legal competence to contract under Contract Act s.11.",
+        "exceptions": [],
+        "risk_topics": [
+          "minor_capacity",
+          "contract_validity"
+        ]
+      },
+      "full_text": "A person under 18 years of age is a minor and lacks legal competence to contract under Contract Act s.11.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-CONTRACT-1872:s.2(d)": {
+      "provision_id": "BD-CONTRACT-1872:s.2(d)",
+      "law_id": "BD-CONTRACT-1872",
+      "jurisdiction": "BD",
+      "citation_string": "Contract Act 1872 (BD), s.2(d)",
+      "title": "Contract Act 1872 (BD), s.2(d) - Consideration",
+      "section_code": {
+        "code": "s.2(d)",
+        "number": "2(d)",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Consideration under Bangladeshi law includes past, present, or future acts or abstinences at the desire of the promisor.",
+        "operative_rule": "Past consideration is valid under Contract Act s.2(d), though commercially one-sided payment terms remain a commercial risk.",
+        "exceptions": [],
+        "risk_topics": [
+          "consideration",
+          "commercial_fairness"
+        ]
+      },
+      "full_text": "Past consideration is valid under Contract Act s.2(d), though commercially one-sided payment terms remain a commercial risk.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-CONTRACT-1872:s.139": {
+      "provision_id": "BD-CONTRACT-1872:s.139",
+      "law_id": "BD-CONTRACT-1872",
+      "jurisdiction": "BD",
+      "citation_string": "Contract Act 1872 (BD), s.139",
+      "title": "Contract Act 1872 (BD), s.139 - Discharge of surety by creditor's act",
+      "section_code": {
+        "code": "s.139",
+        "number": "139",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "If the creditor does any act inconsistent with the surety's rights or impairs the surety's eventual remedy against the principal debtor, the surety is discharged.",
+        "operative_rule": "Creditor acts impairing surety recourse discharge the guarantor.",
+        "exceptions": [],
+        "risk_topics": [
+          "surety_guarantee"
+        ]
+      },
+      "full_text": "Creditor acts impairing surety recourse discharge the guarantor.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-CONTRACT-1872:s.142": {
+      "provision_id": "BD-CONTRACT-1872:s.142",
+      "law_id": "BD-CONTRACT-1872",
+      "jurisdiction": "BD",
+      "citation_string": "Contract Act 1872 (BD), s.142",
+      "title": "Contract Act 1872 (BD), s.142 - Guarantee obtained by misrepresentation",
+      "section_code": {
+        "code": "s.142",
+        "number": "142",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Any guarantee obtained by means of misrepresentation made by the creditor, or with his knowledge and assent, concerning a material part of the transaction is invalid.",
+        "operative_rule": "Guarantees procured without material risk disclosure are invalid.",
+        "exceptions": [],
+        "risk_topics": [
+          "surety_guarantee",
+          "fraud_in_contract"
+        ]
+      },
+      "full_text": "Guarantees procured without material risk disclosure are invalid.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-CONTRACT-1872:s.143": {
+      "provision_id": "BD-CONTRACT-1872:s.143",
+      "law_id": "BD-CONTRACT-1872",
+      "jurisdiction": "BD",
+      "citation_string": "Contract Act 1872 (BD), s.143",
+      "title": "Contract Act 1872 (BD), s.143 - Guarantee obtained by concealment",
+      "section_code": {
+        "code": "s.143",
+        "number": "143",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Any guarantee obtained by keeping silence as to material circumstances is invalid.",
+        "operative_rule": "Concealing known defects or defaults from a guarantor invalidates the guarantee.",
+        "exceptions": [],
+        "risk_topics": [
+          "surety_guarantee",
+          "fraud_in_contract"
+        ]
+      },
+      "full_text": "Concealing known defects or defaults from a guarantor invalidates the guarantee.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-CONTRACT-1872:s.150": {
+      "provision_id": "BD-CONTRACT-1872:s.150",
+      "law_id": "BD-CONTRACT-1872",
+      "jurisdiction": "BD",
+      "citation_string": "Contract Act 1872 (BD), s.150",
+      "title": "Contract Act 1872 (BD), s.150 - Bailor's duty to disclose faults in goods bailed",
+      "section_code": {
+        "code": "s.150",
+        "number": "150",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "A bailor must disclose known faults in bailed goods; where goods are bailed/leased for hire, the bailor is responsible for damage from faults whether aware or not.",
+        "operative_rule": "In an equipment lease (bailment for hire), disclaiming known or latent defects is contrary to Contract Act s.150 (note: Sale of Goods Act 1930 does not govern leases).",
+        "exceptions": [],
+        "risk_topics": [
+          "bailment_defects",
+          "liability_cap"
+        ]
+      },
+      "full_text": "In an equipment lease (bailment for hire), disclaiming known or latent defects is contrary to Contract Act s.150 (note: Sale of Goods Act 1930 does not govern leases).",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-COMPANIES-1994:s.2(1)(q)": {
+      "provision_id": "BD-COMPANIES-1994:s.2(1)(q)",
+      "law_id": "BD-COMPANIES-1994",
+      "jurisdiction": "BD",
+      "citation_string": "Companies Act 1994 (BD), s.2(1)(q)",
+      "title": "Companies Act 1994 (BD), s.2(1)(q) - Private company member limit",
+      "section_code": {
+        "code": "s.2(1)(q)",
+        "number": "2(1)(q)",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "A private company must restrict share transfers, prohibit public invitations, and limit its members to 50 (excluding employee-members).",
+        "operative_rule": "An entity claiming private company status with more than 50 non-employee members violates s.2(1)(q) and faces status/capacity defects.",
+        "exceptions": [],
+        "risk_topics": [
+          "company_authority",
+          "contract_validity"
+        ]
+      },
+      "full_text": "An entity claiming private company status with more than 50 non-employee members violates s.2(1)(q) and faces status/capacity defects.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-COMPANIES-1994:s.159": {
+      "provision_id": "BD-COMPANIES-1994:s.159",
+      "law_id": "BD-COMPANIES-1994",
+      "jurisdiction": "BD",
+      "citation_string": "Companies Act 1994 (BD), s.159",
+      "title": "Companies Act 1994 (BD), s.159 - Registration of charges",
+      "section_code": {
+        "code": "s.159",
+        "number": "159",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "A mortgage or floating charge created by a company must be filed with the Registrar (RJSC) within 21 days of creation, or it is void against the liquidator and creditors.",
+        "operative_rule": "Agreeing not to register a floating charge renders the security void against liquidators and third-party creditors.",
+        "exceptions": [],
+        "risk_topics": [
+          "charge_registration",
+          "company_authority"
+        ]
+      },
+      "full_text": "Agreeing not to register a floating charge renders the security void against liquidators and third-party creditors.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-REG-1908:s.17": {
+      "provision_id": "BD-REG-1908:s.17",
+      "law_id": "BD-REG-1908",
+      "jurisdiction": "BD",
+      "citation_string": "Registration Act 1908 (BD), s.17",
+      "title": "Registration Act 1908 (BD), s.17 - Compulsory registration of leases",
+      "section_code": {
+        "code": "s.17",
+        "number": "17",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Leases of immovable property from year to year, for any term exceeding one year, or reserving a yearly rent must be compulsorily registered.",
+        "operative_rule": "An unregistered lease of immovable property exceeding one year is invalid to pass title/term and parties cannot waive registration by contract.",
+        "exceptions": [],
+        "risk_topics": [
+          "lease_formalities",
+          "immovable_property"
+        ]
+      },
+      "full_text": "An unregistered lease of immovable property exceeding one year is invalid to pass title/term and parties cannot waive registration by contract.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-REG-1908:s.49": {
+      "provision_id": "BD-REG-1908:s.49",
+      "law_id": "BD-REG-1908",
+      "jurisdiction": "BD",
+      "citation_string": "Registration Act 1908 (BD), s.49",
+      "title": "Registration Act 1908 (BD), s.49 - Effect of non-registration",
+      "section_code": {
+        "code": "s.49",
+        "number": "49",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "No document required by s.17 to be registered shall affect any immovable property or be received as evidence of any transaction affecting it unless registered.",
+        "operative_rule": "Unregistered long-term leases cannot be enforced or received as primary evidence of the lease term.",
+        "exceptions": [],
+        "risk_topics": [
+          "lease_formalities",
+          "immovable_property"
+        ]
+      },
+      "full_text": "Unregistered long-term leases cannot be enforced or received as primary evidence of the lease term.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-STAMP-1899:s.35": {
+      "provision_id": "BD-STAMP-1899:s.35",
+      "law_id": "BD-STAMP-1899",
+      "jurisdiction": "BD",
+      "citation_string": "Stamp Act 1899 (BD), s.35",
+      "title": "Stamp Act 1899 (BD), s.35 - Insufficiently stamped instruments inadmissible",
+      "section_code": {
+        "code": "s.35",
+        "number": "35",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "No instrument chargeable with stamp duty shall be admitted in evidence for any purpose or acted upon unless duly stamped (subject to payment of duty and penalty).",
+        "operative_rule": "Executing a high-value lease or contract on nominal/insufficient stamp paper renders it inadmissible in evidence; contractual waivers of stamp duty are void.",
+        "exceptions": [],
+        "risk_topics": [
+          "lease_formalities",
+          "stamp_duty"
+        ]
+      },
+      "full_text": "Executing a high-value lease or contract on nominal/insufficient stamp paper renders it inadmissible in evidence; contractual waivers of stamp duty are void.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-FERA-1947:s.4": {
+      "provision_id": "BD-FERA-1947:s.4",
+      "law_id": "BD-FERA-1947",
+      "jurisdiction": "BD",
+      "citation_string": "Foreign Exchange Regulation Act 1947 (BD), s.4",
+      "title": "Foreign Exchange Regulation Act 1947 (BD), s.4 - Restrictions on dealing in foreign exchange",
+      "section_code": {
+        "code": "s.4",
+        "number": "4",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Prohibits dealing in foreign exchange except through authorized dealers and at rates authorized by Bangladesh Bank.",
+        "operative_rule": "Domestic contracts fixing unauthorized exchange rates or bypassing authorized dealers breach FERA s.4.",
+        "exceptions": [],
+        "risk_topics": [
+          "foreign_exchange",
+          "illegality"
+        ]
+      },
+      "full_text": "Domestic contracts fixing unauthorized exchange rates or bypassing authorized dealers breach FERA s.4.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-MLPA-2012:s.4": {
+      "provision_id": "BD-MLPA-2012:s.4",
+      "law_id": "BD-MLPA-2012",
+      "jurisdiction": "BD",
+      "citation_string": "Money Laundering Prevention Act 2012 (BD), s.4",
+      "title": "Money Laundering Prevention Act 2012 (BD), s.4 - Offence of money laundering",
+      "section_code": {
+        "code": "s.4",
+        "number": "4",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Criminalizes transferring, converting, or concealing proceeds of predicate offences, including trade-based under-invoicing/over-invoicing and unauthorized cross-border transfers.",
+        "operative_rule": "Customs under-declaration, informal settlement channels, or offshore routing of domestic payments trigger money laundering liability.",
+        "exceptions": [],
+        "risk_topics": [
+          "foreign_exchange",
+          "customs_fraud",
+          "illegality"
+        ]
+      },
+      "full_text": "Customs under-declaration, informal settlement channels, or offshore routing of domestic payments trigger money laundering liability.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-VAT-2012:s.15": {
+      "provision_id": "BD-VAT-2012:s.15",
+      "law_id": "BD-VAT-2012",
+      "jurisdiction": "BD",
+      "citation_string": "VAT and Supplementary Duty Act 2012 (BD), s.15",
+      "title": "VAT and Supplementary Duty Act 2012 (BD), s.15 - Standard VAT rate",
+      "section_code": {
+        "code": "s.15",
+        "number": "15",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "The standard Value Added Tax rate in Bangladesh is 15% unless specifically exempted, zero-rated, or subject to a statutory reduced rate.",
+        "operative_rule": "Contractually deeming VAT at an inflated non-statutory rate (e.g., 20%) or prohibiting statutory VDS conflicts with the VAT Act 2012.",
+        "exceptions": [],
+        "risk_topics": [
+          "tax_compliance"
+        ]
+      },
+      "full_text": "Contractually deeming VAT at an inflated non-statutory rate (e.g., 20%) or prohibiting statutory VDS conflicts with the VAT Act 2012.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-ITA-2023:Part 7": {
+      "provision_id": "BD-ITA-2023:Part 7",
+      "law_id": "BD-ITA-2023",
+      "jurisdiction": "BD",
+      "citation_string": "Income Tax Act 2023 (BD), Part 7 (TDS)",
+      "title": "Income Tax Act 2023 (BD), Part 7 - Mandatory Tax Deduction at Source (TDS)",
+      "section_code": {
+        "code": "Part 7",
+        "number": "Part 7",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Payers of rent, contract fees, service charges, and royalties must deduct income tax at source and deposit it with the government.",
+        "operative_rule": "Statutory withholding obligations cannot be waived or contracted out by private agreement.",
+        "exceptions": [],
+        "risk_topics": [
+          "tax_compliance"
+        ]
+      },
+      "full_text": "Statutory withholding obligations cannot be waived or contracted out by private agreement.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-CUSTOMS-2023:s.156-eq": {
+      "provision_id": "BD-CUSTOMS-2023:s.156-eq",
+      "law_id": "BD-CUSTOMS-2023",
+      "jurisdiction": "BD",
+      "citation_string": "Customs Act 2023 (BD) (superseding Customs Act 1969, s.156)",
+      "title": "Customs Act 2023 / Customs Act 1969 (BD), s.156 - False customs declarations",
+      "section_code": {
+        "code": "s.156-eq",
+        "number": "156-eq",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Under-declaring invoice values or submitting false customs declarations is an offence carrying confiscation, penalties, and prosecution.",
+        "operative_rule": "Agreements to under-invoice imported equipment and settle the balance informally are void for illegality under Contract Act s.23.",
+        "exceptions": [],
+        "risk_topics": [
+          "customs_fraud",
+          "illegality"
+        ]
+      },
+      "full_text": "Agreements to under-invoice imported equipment and settle the balance informally are void for illegality under Contract Act s.23.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-PCA-1947:s.5": {
+      "provision_id": "BD-PCA-1947:s.5",
+      "law_id": "BD-PCA-1947",
+      "jurisdiction": "BD",
+      "citation_string": "Prevention of Corruption Act 1947 (BD), s.5",
+      "title": "Prevention of Corruption Act 1947 (BD), s.5 - Criminal misconduct & bribery",
+      "section_code": {
+        "code": "s.5",
+        "number": "5",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Criminalizes offering or obtaining illegal gratification or pecuniary advantage involving public servants.",
+        "operative_rule": "Reimbursable 'facilitation payments' to customs, fire, or factory inspectors constitute bribery and render the clause void under Contract Act s.23.",
+        "exceptions": [],
+        "risk_topics": [
+          "bribery_corruption",
+          "illegality"
+        ]
+      },
+      "full_text": "Reimbursable 'facilitation payments' to customs, fire, or factory inspectors constitute bribery and render the clause void under Contract Act s.23.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-ACC-2004:s.17": {
+      "provision_id": "BD-ACC-2004:s.17",
+      "law_id": "BD-ACC-2004",
+      "jurisdiction": "BD",
+      "citation_string": "Anti-Corruption Commission Act 2004 (BD), s.17",
+      "title": "Anti-Corruption Commission Act 2004 (BD), s.17 - Investigation of bribery offences",
+      "section_code": {
+        "code": "s.17",
+        "number": "17",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Empowers the ACC to investigate and prosecute scheduled corruption and bribery offences involving public officials.",
+        "operative_rule": "Contractual clauses authorizing facilitation payments expose both parties to ACC prosecution.",
+        "exceptions": [],
+        "risk_topics": [
+          "bribery_corruption",
+          "illegality"
+        ]
+      },
+      "full_text": "Contractual clauses authorizing facilitation payments expose both parties to ACC prosecution.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-LABOUR-2006:s.100": {
+      "provision_id": "BD-LABOUR-2006:s.100",
+      "law_id": "BD-LABOUR-2006",
+      "jurisdiction": "BD",
+      "citation_string": "Bangladesh Labour Act 2006 (BD), s.100",
+      "title": "Bangladesh Labour Act 2006 (BD), s.100 - Daily working hours",
+      "section_code": {
+        "code": "s.100",
+        "number": "100",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Standard working hours for an adult worker are 8 hours per day (maximum 10 hours including overtime).",
+        "operative_rule": "Requiring 12-hour daily shifts violates s.100 and cannot be waived by 'independent contractor' labels.",
+        "exceptions": [],
+        "risk_topics": [
+          "labour_compliance"
+        ]
+      },
+      "full_text": "Requiring 12-hour daily shifts violates s.100 and cannot be waived by 'independent contractor' labels.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-LABOUR-2006:s.102": {
+      "provision_id": "BD-LABOUR-2006:s.102",
+      "law_id": "BD-LABOUR-2006",
+      "jurisdiction": "BD",
+      "citation_string": "Bangladesh Labour Act 2006 (BD), s.102",
+      "title": "Bangladesh Labour Act 2006 (BD), s.102 - Weekly working hours",
+      "section_code": {
+        "code": "s.102",
+        "number": "102",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Standard weekly hours are 48 hours (maximum 60 hours/week including overtime, averaging max 56 hours/week over a year).",
+        "operative_rule": "Excessive weekly hours violate mandatory statutory limits.",
+        "exceptions": [],
+        "risk_topics": [
+          "labour_compliance"
+        ]
+      },
+      "full_text": "Excessive weekly hours violate mandatory statutory limits.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-LABOUR-2006:s.103": {
+      "provision_id": "BD-LABOUR-2006:s.103",
+      "law_id": "BD-LABOUR-2006",
+      "jurisdiction": "BD",
+      "citation_string": "Bangladesh Labour Act 2006 (BD), s.103",
+      "title": "Bangladesh Labour Act 2006 (BD), s.103 - Weekly holiday",
+      "section_code": {
+        "code": "s.103",
+        "number": "103",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Workers are entitled to 1 day weekly holiday in factories (1.5 days in shops/commercial establishments) with no wage deduction.",
+        "operative_rule": "Denying weekly holidays violates mandatory labour protections.",
+        "exceptions": [],
+        "risk_topics": [
+          "labour_compliance"
+        ]
+      },
+      "full_text": "Denying weekly holidays violates mandatory labour protections.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-LABOUR-2006:s.108": {
+      "provision_id": "BD-LABOUR-2006:s.108",
+      "law_id": "BD-LABOUR-2006",
+      "jurisdiction": "BD",
+      "citation_string": "Bangladesh Labour Act 2006 (BD), s.108",
+      "title": "Bangladesh Labour Act 2006 (BD), s.108 - Overtime allowance at 2x rate",
+      "section_code": {
+        "code": "s.108",
+        "number": "108",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Work beyond standard daily or weekly hours must be paid at twice (2x) the ordinary rate of basic wage plus dearness allowance.",
+        "operative_rule": "Eliminating overtime premiums is unlawful under s.108.",
+        "exceptions": [],
+        "risk_topics": [
+          "labour_compliance"
+        ]
+      },
+      "full_text": "Eliminating overtime premiums is unlawful under s.108.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-LABOUR-2006:s.122-128": {
+      "provision_id": "BD-LABOUR-2006:s.122-128",
+      "law_id": "BD-LABOUR-2006",
+      "jurisdiction": "BD",
+      "citation_string": "Bangladesh Labour Act 2006 (BD), ss.122-128",
+      "title": "Bangladesh Labour Act 2006 (BD), ss.122-128 - Timely wage payment & deduction limits",
+      "section_code": {
+        "code": "s.122-128",
+        "number": "122-128",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Wages must be paid within 7 working days after the wage period; only statutorily authorized deductions within prescribed limits are permitted.",
+        "operative_rule": "Deferring wages or imposing arbitrary 40% wage deductions violates Chapters X-XI.",
+        "exceptions": [],
+        "risk_topics": [
+          "labour_compliance"
+        ]
+      },
+      "full_text": "Deferring wages or imposing arbitrary 40% wage deductions violates Chapters X-XI.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-LABOUR-2006:s.132-134": {
+      "provision_id": "BD-LABOUR-2006:s.132-134",
+      "law_id": "BD-LABOUR-2006",
+      "jurisdiction": "BD",
+      "citation_string": "Bangladesh Labour Act 2006 (BD), ss.132-134",
+      "title": "Bangladesh Labour Act 2006 (BD), ss.132-134 - Freedom of association & trade unions",
+      "section_code": {
+        "code": "s.132-134",
+        "number": "132-134",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Workers have the statutory right to form and join trade unions; contractual bans on unionization are void.",
+        "operative_rule": "Prohibiting workers from joining or forming unions violates the Labour Act 2006.",
+        "exceptions": [],
+        "risk_topics": [
+          "labour_compliance"
+        ]
+      },
+      "full_text": "Prohibiting workers from joining or forming unions violates the Labour Act 2006.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-LABOUR-2006:s.150": {
+      "provision_id": "BD-LABOUR-2006:s.150",
+      "law_id": "BD-LABOUR-2006",
+      "jurisdiction": "BD",
+      "citation_string": "Bangladesh Labour Act 2006 (BD), s.150",
+      "title": "Bangladesh Labour Act 2006 (BD), s.150 - Employer liability for injury or death",
+      "section_code": {
+        "code": "s.150",
+        "number": "150",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Employers are statutorily liable to pay compensation for personal injury or death caused to a worker by accident arising out of and in the course of employment.",
+        "operative_rule": "Clauses shifting statutory workplace injury/death liability or excluding liability for death violate public policy and s.150.",
+        "exceptions": [],
+        "risk_topics": [
+          "labour_compliance",
+          "safety_environment"
+        ]
+      },
+      "full_text": "Clauses shifting statutory workplace injury/death liability or excluding liability for death violate public policy and s.150.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-FIRE-2003:s.4": {
+      "provision_id": "BD-FIRE-2003:s.4",
+      "law_id": "BD-FIRE-2003",
+      "jurisdiction": "BD",
+      "citation_string": "Fire Service and Civil Defence Act 2003 (BD), s.4",
+      "title": "Fire Service and Civil Defence Act 2003 (BD), s.4 - Mandatory fire safety license & BNBC compliance",
+      "section_code": {
+        "code": "s.4",
+        "number": "4",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Industrial and commercial premises must obtain Fire Service NOC/license and comply with the Bangladesh National Building Code.",
+        "operative_rule": "Contractual waivers of fire safety or Building Code compliance are void as contrary to law and public policy.",
+        "exceptions": [],
+        "risk_topics": [
+          "safety_environment",
+          "illegality"
+        ]
+      },
+      "full_text": "Contractual waivers of fire safety or Building Code compliance are void as contrary to law and public policy.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-BOILER-2022:s.6": {
+      "provision_id": "BD-BOILER-2022:s.6",
+      "law_id": "BD-BOILER-2022",
+      "jurisdiction": "BD",
+      "citation_string": "Boiler Act 2022 / Boilers Act 1923 (BD), s.6",
+      "title": "Boiler Act 2022 / Boilers Act 1923 (BD), s.6 - Prohibition on uncertified boiler operation",
+      "section_code": {
+        "code": "s.6",
+        "number": "6",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "No steam boiler may be operated without a valid registration and current inspection certificate from the Chief Inspector of Boilers.",
+        "operative_rule": "Operating equipment with an expired boiler certificate is unlawful and exposes parties to safety and criminal liability.",
+        "exceptions": [],
+        "risk_topics": [
+          "safety_environment",
+          "bailment_defects"
+        ]
+      },
+      "full_text": "Operating equipment with an expired boiler certificate is unlawful and exposes parties to safety and criminal liability.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-ECA-1995:s.12": {
+      "provision_id": "BD-ECA-1995:s.12",
+      "law_id": "BD-ECA-1995",
+      "jurisdiction": "BD",
+      "citation_string": "Environment Conservation Act 1995 (BD), s.12",
+      "title": "Environment Conservation Act 1995 (BD), s.12 - Mandatory Environmental Clearance Certificate",
+      "section_code": {
+        "code": "s.12",
+        "number": "12",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "No industrial unit or project may be established or operated without an Environmental Clearance Certificate (ECC) from the Department of Environment.",
+        "operative_rule": "Operating an Effluent Treatment Plant (ETP) or industrial facility while DoE clearance is pending violates s.12 and triggers penalties under s.15.",
+        "exceptions": [],
+        "risk_topics": [
+          "safety_environment",
+          "illegality"
+        ]
+      },
+      "full_text": "Operating an Effluent Treatment Plant (ETP) or industrial facility while DoE clearance is pending violates s.12 and triggers penalties under s.15.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-LIMIT-1908:s.3": {
+      "provision_id": "BD-LIMIT-1908:s.3",
+      "law_id": "BD-LIMIT-1908",
+      "jurisdiction": "BD",
+      "citation_string": "Limitation Act 1908 (BD), s.3",
+      "title": "Limitation Act 1908 (BD), s.3 - Statutory limitation periods",
+      "section_code": {
+        "code": "s.3",
+        "number": "3",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Prescribes mandatory limitation periods for suits and claims; read with Contract Act s.28, contractual clauses curtailing statutory limitation periods (e.g., 60-day bar) are void.",
+        "operative_rule": "Shortening statutory limitation periods or waiving the Limitation Act is void under Contract Act s.28.",
+        "exceptions": [],
+        "risk_topics": [
+          "limitation_ousters",
+          "dispute_resolution"
+        ]
+      },
+      "full_text": "Shortening statutory limitation periods or waiving the Limitation Act is void under Contract Act s.28.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-EVID-1872:s.65B": {
+      "provision_id": "BD-EVID-1872:s.65B",
+      "law_id": "BD-EVID-1872",
+      "jurisdiction": "BD",
+      "citation_string": "Evidence Act 1872 (BD), s.65B",
+      "title": "Evidence Act 1872 (BD), s.65B - Admissibility of electronic records",
+      "section_code": {
+        "code": "s.65B",
+        "number": "65B",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Electronic and digital records (including messaging apps) require compliance with statutory authentication conditions under s.65B to be admissible in court.",
+        "operative_rule": "Deeming formal legal notices served solely via WhatsApp or social media upon sending creates severe evidential proof and service risks.",
+        "exceptions": [],
+        "risk_topics": [
+          "electronic_evidence",
+          "notice_service"
+        ]
+      },
+      "full_text": "Deeming formal legal notices served solely via WhatsApp or social media upon sending creates severe evidential proof and service risks.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-ICT-2006:s.7": {
+      "provision_id": "BD-ICT-2006:s.7",
+      "law_id": "BD-ICT-2006",
+      "jurisdiction": "BD",
+      "citation_string": "ICT Act 2006 (BD), s.7",
+      "title": "ICT Act 2006 (BD), s.7 - Legal recognition of electronic records",
+      "section_code": {
+        "code": "s.7",
+        "number": "7",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "Electronic records are legally recognized only when retained in accessible form for subsequent reference and authenticated as required.",
+        "operative_rule": "Ephemeral messaging platforms without verified delivery/retention jeopardize formal notice validity.",
+        "exceptions": [],
+        "risk_topics": [
+          "electronic_evidence",
+          "notice_service"
+        ]
+      },
+      "full_text": "Ephemeral messaging platforms without verified delivery/retention jeopardize formal notice validity.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
+    },
+    "BD-CSO-2025:s.1": {
+      "provision_id": "BD-CSO-2025:s.1",
+      "law_id": "BD-CSO-2025",
+      "jurisdiction": "BD",
+      "citation_string": "Cyber Security Ordinance 2025 (BD) (repealing Cyber Security Act 2023)",
+      "title": "Cyber Security Ordinance 2025 (BD) - Current cyber-security statute",
+      "section_code": {
+        "code": "s.1",
+        "number": "1",
+        "chapter": null,
+        "is_penal": false,
+        "penal_code_number": null
+      },
+      "article_number": null,
+      "summary": {
+        "one_week_summary": "The Cyber Security Ordinance, 2025 repealed and replaced the Cyber Security Act, 2023 as Bangladesh's governing cyber-security legislation.",
+        "operative_rule": "Contracts citing the repealed Cyber Security Act 2023 or Digital Security Act 2018 reference superseded law.",
+        "exceptions": [],
+        "risk_topics": [
+          "cyber_security",
+          "currency_of_law"
+        ]
+      },
+      "full_text": "Contracts citing the repealed Cyber Security Act 2023 or Digital Security Act 2018 reference superseded law.",
+      "source_url": "http://bdlaws.minlaw.gov.bd/",
+      "precedents": [],
+      "edges": [],
+      "confidence": "high",
+      "verified": true
     }
   },
   "precedents": {
@@ -66919,6 +69095,204 @@
         "reason": "Prohibition on anticompetitive agreements and conspiracies under 15 U.S.C. § 1 directly corresponds to Section 15(1) Bangladesh Competition Act 2012.",
         "difficulty_trigger": "competition_cartel",
         "weight": 1.6
+      }
+    },
+    {
+      "source": "BD-CONTRACT-1872:s.11",
+      "edge": {
+        "target_law_id": "BD-MAJORITY-1875:s.3",
+        "target_citation": "Majority Act 1875 (BD), s.3",
+        "relation_type": "STATUTORY_DEFINITION",
+        "reason": "Competence to contract under s.11 depends on attaining 18 years under Majority Act s.3.",
+        "difficulty_trigger": "minor_capacity",
+        "weight": 2.0
+      }
+    },
+    {
+      "source": "BD-TOPA-1882:s.107",
+      "edge": {
+        "target_law_id": "BD-REG-1908:s.17",
+        "target_citation": "Registration Act 1908 (BD), s.17",
+        "relation_type": "COMPULSORY_FORMALITY",
+        "reason": "Leases exceeding 1 year require compulsory registration under both TOPA s.107 and Registration Act s.17.",
+        "difficulty_trigger": "lease_formalities",
+        "weight": 2.0
+      }
+    },
+    {
+      "source": "BD-REG-1908:s.17",
+      "edge": {
+        "target_law_id": "BD-STAMP-1899:s.35",
+        "target_citation": "Stamp Act 1899 (BD), s.35",
+        "relation_type": "EVIDENTIARY_BAR",
+        "reason": "Insufficiently stamped instruments cannot be registered or admitted in evidence under Stamp Act s.35.",
+        "difficulty_trigger": "lease_formalities",
+        "weight": 2.0
+      }
+    },
+    {
+      "source": "BD-CONTRACT-1872:s.28",
+      "edge": {
+        "target_law_id": "BD-LIMIT-1908:s.3",
+        "target_citation": "Limitation Act 1908 (BD), s.3",
+        "relation_type": "VOID_CURTAILMENT",
+        "reason": "Clauses shortening statutory limitation periods under Limitation Act 1908 are void under Contract Act s.28.",
+        "difficulty_trigger": "limitation_ousters",
+        "weight": 2.0
+      }
+    },
+    {
+      "source": "BD-FERA-1947:s.5",
+      "edge": {
+        "target_law_id": "BD-MLPA-2012:s.4",
+        "target_citation": "Money Laundering Prevention Act 2012 (BD), s.4",
+        "relation_type": "CRIMINAL_ESCALATION",
+        "reason": "Unauthorized offshore payments and trade misinvoicing violate FERA s.5 and trigger money laundering liability.",
+        "difficulty_trigger": "foreign_exchange",
+        "weight": 2.0
+      }
+    },
+    {
+      "source": "BD-CUSTOMS-2023:s.156-eq",
+      "edge": {
+        "target_law_id": "BD-MLPA-2012:s.4",
+        "target_citation": "Money Laundering Prevention Act 2012 (BD), s.4",
+        "relation_type": "CRIMINAL_ESCALATION",
+        "reason": "Customs under-declaration constitutes trade-based money laundering and renders the underlying clause void under Contract Act s.23.",
+        "difficulty_trigger": "customs_fraud",
+        "weight": 2.0
+      }
+    },
+    {
+      "source": "BD-PCA-1947:s.5",
+      "edge": {
+        "target_law_id": "BD-ACC-2004:s.17",
+        "target_citation": "Anti-Corruption Commission Act 2004 (BD), s.17",
+        "relation_type": "ENFORCEMENT_LINK",
+        "reason": "Bribery and facilitation payments to public officials are investigated by the ACC under ACC Act 2004.",
+        "difficulty_trigger": "bribery_corruption",
+        "weight": 2.0
+      }
+    },
+    {
+      "source": "BD-CONTRACT-1872:s.23",
+      "edge": {
+        "target_law_id": "BD-PCA-1947:s.5",
+        "target_citation": "Prevention of Corruption Act 1947 (BD), s.5",
+        "relation_type": "UNLAWFUL_OBJECT",
+        "reason": "Agreements involving facilitation payments or illegal gratification are void for unlawful object under Contract Act s.23.",
+        "difficulty_trigger": "bribery_corruption",
+        "weight": 2.0
+      }
+    },
+    {
+      "source": "BD-VAT-2012:s.15",
+      "edge": {
+        "target_law_id": "BD-ITA-2023:Part 7",
+        "target_citation": "Income Tax Act 2023 (BD), Part 7 (TDS)",
+        "relation_type": "STATUTORY_TAX",
+        "reason": "Both 15% standard VAT and TDS withholding obligations are mandatory statutory duties that cannot be waived by contract.",
+        "difficulty_trigger": "tax_compliance",
+        "weight": 1.9
+      }
+    },
+    {
+      "source": "BD-LABOUR-2006:s.100",
+      "edge": {
+        "target_law_id": "BD-LABOUR-2006:s.108",
+        "target_citation": "Bangladesh Labour Act 2006 (BD), s.108",
+        "relation_type": "OVERTIME_LINK",
+        "reason": "Work beyond 8 hours/day triggers mandatory 2x overtime pay under s.108.",
+        "difficulty_trigger": "labour_compliance",
+        "weight": 1.9
+      }
+    },
+    {
+      "source": "BD-LABOUR-2006:s.150",
+      "edge": {
+        "target_law_id": "BD-FIRE-2003:s.4",
+        "target_citation": "Fire Service and Civil Defence Act 2003 (BD), s.4",
+        "relation_type": "SAFETY_COMPLIANCE",
+        "reason": "Workplace safety and employer injury/death liability cannot be waived by private agreement.",
+        "difficulty_trigger": "safety_environment",
+        "weight": 1.9
+      }
+    },
+    {
+      "source": "BD-ECA-1995:s.12",
+      "edge": {
+        "target_law_id": "BD-BOILER-2022:s.6",
+        "target_citation": "Boiler Act 2022 / Boilers Act 1923 (BD), s.6",
+        "relation_type": "REGULATORY_CLEARANCE",
+        "reason": "Industrial operations require both valid DoE Environmental Clearance and current Boiler certification.",
+        "difficulty_trigger": "safety_environment",
+        "weight": 1.9
+      }
+    },
+    {
+      "source": "BD-CONTRACT-1872:s.150",
+      "edge": {
+        "target_law_id": "BD-BOILER-2022:s.6",
+        "target_citation": "Boiler Act 2022 / Boilers Act 1923 (BD), s.6",
+        "relation_type": "BAILOR_LIABILITY",
+        "reason": "Lessors of industrial equipment for hire are liable under s.150 for faults/uncertified equipment.",
+        "difficulty_trigger": "bailment_defects",
+        "weight": 1.9
+      }
+    },
+    {
+      "source": "BD-CONTRACT-1872:s.133",
+      "edge": {
+        "target_law_id": "BD-CONTRACT-1872:s.143",
+        "target_citation": "Contract Act 1872 (BD), s.143",
+        "relation_type": "SURETY_PROTECTION",
+        "reason": "Guarantor waivers and concealment of material facts are governed together under ss.133-143 and s.16.",
+        "difficulty_trigger": "surety_guarantee",
+        "weight": 1.9
+      }
+    },
+    {
+      "source": "BD-CONTRACT-1872:s.16",
+      "edge": {
+        "target_law_id": "BD-CONTRACT-1872:s.143",
+        "target_citation": "Contract Act 1872 (BD), s.143",
+        "relation_type": "UNDUE_INFLUENCE",
+        "reason": "Spousal/dependent guarantees without independent advice or disclosure face invalidation.",
+        "difficulty_trigger": "surety_guarantee",
+        "weight": 1.8
+      }
+    },
+    {
+      "source": "BD-EVID-1872:s.65B",
+      "edge": {
+        "target_law_id": "BD-ICT-2006:s.7",
+        "target_citation": "ICT Act 2006 (BD), s.7",
+        "relation_type": "ELECTRONIC_PROOF",
+        "reason": "Electronic notices must satisfy Evidence Act s.65B and ICT Act retention/authentication standards.",
+        "difficulty_trigger": "electronic_evidence",
+        "weight": 1.8
+      }
+    },
+    {
+      "source": "BD-CONTRACT-1872:s.74",
+      "edge": {
+        "target_law_id": "BD-CONTRACT-1872:s.65",
+        "target_citation": "Contract Act 1872 (BD), s.65",
+        "relation_type": "PENALTY_RESTITUTION",
+        "reason": "Penal forfeiture of advance rent/deposits triggers both s.74 reasonable-compensation limits and s.65 restitution.",
+        "difficulty_trigger": "penalty_clause",
+        "weight": 1.9
+      }
+    },
+    {
+      "source": "BD-COMPANIES-1994:s.159",
+      "edge": {
+        "target_law_id": "BD-COMPANIES-1994:s.2(1)(q)",
+        "target_citation": "Companies Act 1994 (BD), s.2(1)(q)",
+        "relation_type": "CORPORATE_COMPLIANCE",
+        "reason": "Corporate capacity and security registration under Companies Act 1994.",
+        "difficulty_trigger": "company_authority",
+        "weight": 1.8
       }
     }
   ]

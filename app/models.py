@@ -66,6 +66,7 @@ class AnalyzeRequest(BaseModel):
     document_text: str = Field(..., min_length=1)
     jurisdictions: Optional[List[JurisdictionCode]] = None
     doc_name: Optional[str] = None
+    client_name: Optional[str] = None
 
 
 class RiskCitation(BaseModel):

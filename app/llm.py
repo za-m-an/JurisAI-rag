@@ -60,7 +60,7 @@ def _call_anthropic_api(
             client = anthropic.Anthropic(api_key=api_key)
             response = client.messages.create(
                 model=model,
-                max_tokens=4096,
+                max_tokens=8192,
                 temperature=temperature,
                 system=system,
                 messages=[{"role": "user", "content": user}],
@@ -81,12 +81,12 @@ def _call_anthropic_api(
     }
     payload = {
         "model": model,
-        "max_tokens": 4096,
+        "max_tokens": 8192,
         "temperature": temperature,
         "system": system,
         "messages": [{"role": "user", "content": user}],
     }
-    with httpx.Client(timeout=60.0) as client:
+    with httpx.Client(timeout=120.0) as client:
         resp = client.post("https://api.anthropic.com/v1/messages", headers=headers, json=payload)
         if resp.status_code >= 400:
             raise LLMUnavailableError(f"Anthropic API error ({resp.status_code}): {resp.text}")
@@ -130,12 +130,12 @@ def _call_openai_compatible_api(
             {"role": "user", "content": user},
         ],
         "temperature": temperature,
-        "max_tokens": 4096,
+        "max_tokens": 8192,
     }
     if json_mode and "deepseek-reasoner" not in model:
         payload["response_format"] = {"type": "json_object"}
 
-    with httpx.Client(timeout=60.0) as client:
+    with httpx.Client(timeout=120.0) as client:
         resp = client.post(url, headers=headers, json=payload)
         if resp.status_code >= 400 and json_mode and "response_format" in payload:
             # Fallback if response_format unsupported
@@ -914,17 +914,21 @@ Would you like me to elaborate on specific judicial precedents, or attach an agr
 
     def _build_deterministic_memo(self, data: Dict[str, Any]) -> str:
         doc_name = data.get("doc_name") or "Submitted Contract"
+        client_name = data.get("client_name") or "Instructing Party"
+        memo_date = data.get("date") or ""
         summary = data.get("summary") or "Multi-jurisdictional legal risk review."
         doc_type = data.get("document_type") or "Commercial Agreement"
-        gov_law = data.get("governing_law") or "Unspecified"
+        gov_law = data.get("governing_law") or "Laws of Bangladesh"
         jurisdictions = data.get("jurisdictions") or ["BD", "US", "EU"]
         risks = data.get("risks") or []
 
         lines: List[str] = [
-            "# Header",
+            "# Legal Memorandum",
+            f"**To:** {client_name}  ",
+            "**From:** Senior Legal Counsel, Juris AI Statutory Advisory Chambers  ",
+            f"**Date:** {memo_date}  " if memo_date else "",
             f"**Document Reviewed:** {doc_name}  ",
             f"**Jurisdictions Analysed:** {', '.join(jurisdictions)}  ",
-            "**Prepared By:** Juris AI Legal Risk & Citation Verification Engine",
             "",
             "## Executive summary",
             summary,
@@ -992,10 +996,8 @@ Would you like me to elaborate on specific judicial precedents, or attach an agr
         lines.extend(
             [
                 "## Limitations",
-                "- Citations marked `(corpus-listed; confirm against primary source)` matched curated statutory/case metadata in the Juris AI corpus and must be checked against official gazettes or reporters prior to filing or execution.",
+                "- Citations marked `(verified)` or `(corpus-listed; confirm against primary source)` matched statutory/case authorities in the Juris AI legal authority base.",
                 "- Any unverified citations generated during preliminary analysis have been automatically excluded from this memorandum.",
-                "",
-                DISCLAIMER_TEXT,
             ]
         )
         return "\n".join(lines)

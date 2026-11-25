@@ -350,6 +350,7 @@ def create_app() -> FastAPI:
                 document_text=payload.document_text,
                 jurisdictions=list(payload.jurisdictions) if payload.jurisdictions else None,
                 doc_name=payload.doc_name,
+                client_name=payload.client_name,
                 llm_client=llm_client,
             )
             return model_to_dict(result)
