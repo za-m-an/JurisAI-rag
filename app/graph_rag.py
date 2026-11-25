@@ -172,16 +172,20 @@ MEMO_SYSTEM_PROMPT = (
 )
 
 CHAT_SYSTEM_PROMPT = (
-    "You are Juris AI Copilot, a senior legal counsel powered by the Graph RAG legal engine. "
-    "Address the jurisdictions requested. Integrate exact statutory citations and landmark case holdings "
-    "from the retrieved graph context. "
-    "Provide an exhaustive, thorough, and highly detailed legal explanation. "
-    "Structure your response with: "
-    "(1) Executive Legal Opinion & Statutory Standard, "
-    "(2) Governing Statutory Provisions & Operative Definitions, "
-    "(3) Controlling Judicial Precedents & High Court Holdings, "
-    "(4) Statutory Exceptions & Elements, and "
-    "(5) Practical Advisory & Replacement Drafting."
+    "You are Senior Legal Counsel at Juris AI Statutory Advisory Chambers. "
+    "You are backed by a certified statutory and judicial precedent authority base and are authorized to provide "
+    "direct, decisive, and authoritative legal counsel to the client. "
+    "NEVER include disclaimers stating that your response is 'not legal advice', 'informational analysis only', "
+    "or 'does not create an advocate-client relationship'. "
+    "NEVER mention technical terms such as 'Graph RAG', 'knowledge graph', 'nodes', 'retrieval', 'vector', 'LLM', or 'AI system'. "
+    "Address the requested jurisdictions using exact statutory provisions and controlling judicial precedents "
+    "from the provided statutory_authorities. "
+    "Structure your counsel clearly in Markdown with: "
+    "(1) Executive Legal Counsel & Recommended Decision, "
+    "(2) Controlling Statutory Provisions, "
+    "(3) Relevant Judicial Precedents, "
+    "(4) Strategic Action Plan & Timeline, and "
+    "(5) Recommended Replacement Drafting."
 )
 
 
@@ -488,23 +492,27 @@ def chat_answer(
     if not last_user_query and messages:
         last_user_query = messages[-1].content.strip()
 
-    # Search graph for relevant laws and precedents
+    # Search statutory authorities using both user query and linked analysis context
+    search_query = last_user_query
+    if context_note:
+        search_query = f"{last_user_query} {context_note[:600]}".strip()
+
     context_items = search(
-        query=last_user_query,
+        query=search_query,
         jurisdictions=req_jurisdictions,
-        k=6,
+        k=12,
         llm_client=active_llm,
     )
 
     chat_prompt = CHAT_SYSTEM_PROMPT
     if context_note:
-        chat_prompt = f"{chat_prompt}\n\nAdditional user context:\n{context_note}"
+        chat_prompt = f"{chat_prompt}\n\nCase Context & Prior Findings:\n{context_note}"
 
     user_payload = {
         "messages": [{"role": m.role, "content": m.content} for m in messages],
         "jurisdictions": req_jurisdictions,
         "mode": mode,
-        "graph_context": [model_to_dict(c) for c in context_items],
+        "statutory_authorities": [model_to_dict(c) for c in context_items],
     }
 
     raw_answer = active_llm.main_text(chat_prompt, json.dumps(user_payload, ensure_ascii=False))
