@@ -35,7 +35,7 @@ class HealthResponse(BaseModel):
     status: Literal["ok"] = "ok"
     version: str = "0.1.0"
     mock: bool
-    embeddings: Literal["openai", "local", "hash"]
+    embeddings: str
     corpus: CorpusStats
 
 

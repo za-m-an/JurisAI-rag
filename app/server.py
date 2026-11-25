@@ -16,9 +16,16 @@ from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from . import __version__
-from .analyze import DocumentTooLargeError, analyze_document, chat_answer
 from .config import Settings, load_settings, update_settings
-from .ingest import run_ingest
+from .graph_rag import (
+    DocumentTooLargeError,
+    analyze_document,
+    chat_answer,
+    get_corpus_health_stats,
+    get_graph,
+    search,
+    verify_citation,
+)
 from .llm import LLMClient, LLMUnavailableError
 from .models import (
     AnalyzeRequest,
@@ -30,8 +37,6 @@ from .models import (
     SearchResponse,
     model_to_dict,
 )
-from .retrieve import get_corpus_health_stats, is_index_ready, search
-from .verify import verify_citation
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 logger = logging.getLogger("juris_rag.server")
@@ -143,10 +148,8 @@ class ASGIGuardAndLoggingMiddleware:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    settings = load_settings()
-    if not is_index_ready(settings.chroma_dir):
-        logger.info(json.dumps({"event": "startup_auto_ingest", "chroma_dir": str(settings.chroma_dir)}))
-        run_ingest(data_dir=settings.data_dir, chroma_dir=settings.chroma_dir, settings=settings)
+    logger.info(json.dumps({"event": "startup_graph_rag"}))
+    get_graph()
     yield
 
 
@@ -222,12 +225,12 @@ def create_app() -> FastAPI:
         return x_api_key
 
     def ensure_index_available() -> None:
-        settings = load_settings()
-        if not is_index_ready(settings.chroma_dir):
+        g = get_graph()
+        if not g.provisions:
             raise ServiceAPIError(
                 status_code=503,
                 error="index_missing",
-                message="Corpus index is missing; run python -m app.ingest",
+                message="Legal knowledge graph is empty or missing; run python -m app.graph_builder",
             )
 
     def resolve_request_llm_client(request: Request) -> LLMClient:
@@ -310,22 +313,20 @@ def create_app() -> FastAPI:
 
     @app.get("/health", response_model=HealthResponse)
     def get_health(request: Request):
-        settings = load_settings()
         ensure_index_available()
-        stats = get_corpus_health_stats(chroma_dir=settings.chroma_dir)
+        stats = get_corpus_health_stats()
         client = resolve_request_llm_client(request)
         resp = HealthResponse(
             status="ok",
             version=__version__,
             mock=client.is_mock,
-            embeddings=settings.embeddings_backend,  # type: ignore[arg-type]
+            embeddings="local",
             corpus=CorpusStats(**stats),
         )
         return model_to_dict(resp)
 
     @app.post("/rag/search", response_model=SearchResponse, dependencies=[Depends(require_api_key)])
     def post_rag_search(payload: SearchRequest, request: Request):
-        settings = load_settings()
         ensure_index_available()
         llm_client = resolve_request_llm_client(request)
         try:
@@ -334,7 +335,6 @@ def create_app() -> FastAPI:
                 jurisdictions=list(payload.jurisdictions) if payload.jurisdictions else None,
                 risk_tags=payload.risk_tags,
                 k=payload.k,
-                chroma_dir=settings.chroma_dir,
                 llm_client=llm_client,
             )
             return model_to_dict(SearchResponse(context=items))
@@ -343,7 +343,6 @@ def create_app() -> FastAPI:
 
     @app.post("/analyze", dependencies=[Depends(require_api_key)])
     def post_analyze(payload: AnalyzeRequest, request: Request):
-        settings = load_settings()
         ensure_index_available()
         llm_client = resolve_request_llm_client(request)
         try:
@@ -351,7 +350,6 @@ def create_app() -> FastAPI:
                 document_text=payload.document_text,
                 jurisdictions=list(payload.jurisdictions) if payload.jurisdictions else None,
                 doc_name=payload.doc_name,
-                chroma_dir=settings.chroma_dir,
                 llm_client=llm_client,
             )
             return model_to_dict(result)
@@ -362,7 +360,6 @@ def create_app() -> FastAPI:
 
     @app.post("/chat", dependencies=[Depends(require_api_key)])
     def post_chat(payload: ChatRequest, request: Request):
-        settings = load_settings()
         ensure_index_available()
         llm_client = resolve_request_llm_client(request)
         try:
@@ -371,7 +368,6 @@ def create_app() -> FastAPI:
                 jurisdictions=list(payload.jurisdictions) if payload.jurisdictions else None,
                 context_note=payload.context_note,
                 mode=payload.mode or "conversational",
-                chroma_dir=settings.chroma_dir,
                 llm_client=llm_client,
             )
             return model_to_dict(result)
@@ -380,12 +376,11 @@ def create_app() -> FastAPI:
 
     @app.get("/citation/{citation_string:path}", dependencies=[Depends(require_api_key)])
     def get_citation(citation_string: str):
-        settings = load_settings()
         ensure_index_available()
         decoded = unquote(citation_string).strip()
         if not decoded:
             raise ServiceAPIError(status_code=400, error="bad_request", message="citation_string cannot be empty")
-        res = verify_citation(decoded, quote=None, chroma_dir=settings.chroma_dir)
+        res = verify_citation(decoded, quote=None)
         out = CitationLookupResponse(
             citation_string=decoded,
             status=res["status"],  # type: ignore[arg-type]
