@@ -150,7 +150,11 @@ def _call_openai_compatible_api(
         if not choices:
             raise LLMUnavailableError("LLM response contained no choices")
         message = choices[0].get("message", {})
-        return str(message.get("content") or "").strip()
+        content_str = str(message.get("content") or "").strip()
+        if not content_str and message.get("reasoning_content"):
+            content_str = str(message.get("reasoning_content") or "").strip()
+        logger.info(f"LLM API call succeeded: model={model} json_mode={json_mode} response_len={len(content_str)}")
+        return content_str
 
 
 class LLMClient:
@@ -241,14 +245,26 @@ class LLMClient:
             raise LLMUnavailableError(f"LLM JSON request failed ({tier}): {exc}") from exc
 
         cleaned = strip_code_fences(raw)
-        try:
-            parsed = json.loads(cleaned)
-            if isinstance(parsed, dict):
-                return parsed
-        except Exception:
-            pass
+        for candidate in (cleaned,):
+            try:
+                parsed = json.loads(candidate)
+                if isinstance(parsed, dict):
+                    return parsed
+            except Exception:
+                pass
+        # Extract first {...} block in case model included prose around JSON
+        first_brace = raw.find("{")
+        last_brace = raw.rfind("}")
+        if first_brace != -1 and last_brace > first_brace:
+            try:
+                parsed = json.loads(raw[first_brace : last_brace + 1])
+                if isinstance(parsed, dict):
+                    return parsed
+            except Exception:
+                pass
 
         # One automatic repair retry if JSON is invalid
+        logger.warning(f"JSON parse failed for tier={tier}, raw_preview={raw[:200]!r}; running repair retry")
         self.json_repair_retries += 1
         repair_user = (
             "The previous output was not valid JSON. Repair and return ONLY a valid JSON object matching the schema:\n\n"
@@ -263,9 +279,17 @@ class LLMClient:
                 json_mode=True,
             )
             repaired_clean = strip_code_fences(repaired_raw)
-            parsed = json.loads(repaired_clean)
-            if isinstance(parsed, dict):
-                return parsed
+            try:
+                parsed = json.loads(repaired_clean)
+                if isinstance(parsed, dict):
+                    return parsed
+            except Exception:
+                fb = repaired_raw.find("{")
+                lb = repaired_raw.rfind("}")
+                if fb != -1 and lb > fb:
+                    parsed = json.loads(repaired_raw[fb : lb + 1])
+                    if isinstance(parsed, dict):
+                        return parsed
         except Exception as exc:
             raise LLMUnavailableError(f"LLM returned invalid JSON after repair retry: {exc}") from exc
 

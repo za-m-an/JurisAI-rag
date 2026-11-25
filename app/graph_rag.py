@@ -356,19 +356,32 @@ def analyze_document(
     context_bundle = list(bundle_by_id.values())
     t_retrieval_ms = max(1, int((time.perf_counter() - t_ret0) * 1000))
 
-    # Stage 3: LLM Risk Analysis (Strict JSON, chunked for multi-page contracts)
+    # Stage 3: LLM Risk Analysis (Strict JSON, chunked up to 3 passes for multi-page contracts)
     t_an0 = time.perf_counter()
     current_date = datetime.now().strftime("%d %B %Y")
     default_gov_law = "Laws of Bangladesh" if req_jurisdictions == ["BD"] or req_jurisdictions[0] == "BD" else f"{', '.join(req_jurisdictions)} Law"
     context_dicts = [model_to_dict(c) for c in context_bundle]
+    logger.info(
+        f"Stage 3 start: doc_len={len(document_text)} clauses={len(clauses)} "
+        f"context_items={len(context_dicts)} provider={active_llm.settings.get_provider('main')} "
+        f"model={active_llm.settings.get_model('main')} mock={active_llm.is_mock}"
+    )
 
-    if len(clauses) > 12 or len(document_text) > 9000:
-        # Multi-pass chunked analysis so large contracts never truncate at output token limits
-        batch_size = 8
+    def _unwrap_analysis_dict(resp: Any) -> Dict[str, Any]:
+        if not isinstance(resp, dict):
+            return {}
+        for nested_key in ("analysis", "result", "data", "contract_analysis"):
+            if isinstance(resp.get(nested_key), dict) and not resp.get("risks"):
+                return resp[nested_key]
+        return resp
+
+    if len(clauses) > 16 or len(document_text) > 10000:
+        # Multi-pass chunked analysis (capped at 3 batches to stay well within HTTP timeouts)
+        batch_size = max(10, (len(clauses) + 2) // 3)
         merged_risks: List[Dict[str, Any]] = []
         seen_keys = set()
         raw_analysis: Dict[str, Any] = {}
-        header_preview = document_text[:2500]
+        header_preview = document_text[:2800]
         for start in range(0, max(1, len(clauses)), batch_size):
             batch_clauses = clauses[start : start + batch_size]
             batch_payload = json.dumps(
@@ -382,7 +395,7 @@ def analyze_document(
                 },
                 ensure_ascii=False,
             )
-            batch_resp = active_llm.main_json(ANALYSIS_SYSTEM_PROMPT, batch_payload)
+            batch_resp = _unwrap_analysis_dict(active_llm.main_json(ANALYSIS_SYSTEM_PROMPT, batch_payload))
             if isinstance(batch_resp, dict):
                 if not raw_analysis:
                     raw_analysis = dict(batch_resp)
@@ -414,7 +427,30 @@ def analyze_document(
             },
             ensure_ascii=False,
         )
-        raw_analysis = active_llm.main_json(ANALYSIS_SYSTEM_PROMPT, analysis_user_payload)
+        raw_analysis = _unwrap_analysis_dict(active_llm.main_json(ANALYSIS_SYSTEM_PROMPT, analysis_user_payload))
+
+    # Fallback if Stage 3 yielded no risks on a substantive contract
+    if not (raw_analysis or {}).get("risks") and len(document_text) > 500:
+        logger.warning(f"Stage 3 returned 0 risks (keys={list((raw_analysis or {}).keys())}); running direct fallback pass")
+        fallback_payload = json.dumps(
+            {
+                "doc_name": doc_name or "Submitted Document",
+                "current_date": current_date,
+                "jurisdictions": req_jurisdictions,
+                "document_text": document_text[:28000],
+                "context": context_dicts[:25],
+            },
+            ensure_ascii=False,
+        )
+        fb_resp = _unwrap_analysis_dict(active_llm.main_json(ANALYSIS_SYSTEM_PROMPT, fallback_payload))
+        if isinstance(fb_resp, dict) and fb_resp.get("risks"):
+            raw_analysis = fb_resp
+
+    logger.info(
+        f"Stage 3 complete: keys={list((raw_analysis or {}).keys())} "
+        f"risks={len((raw_analysis or {}).get('risks') or [])} "
+        f"parties={len((raw_analysis or {}).get('parties') or [])}"
+    )
     t_analysis_ms = max(1, int((time.perf_counter() - t_an0) * 1000))
 
     # Stage 4: Deterministic Graph Citation Verification
